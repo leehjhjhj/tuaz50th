@@ -4,12 +4,14 @@
 {% block content %}
 <div style="margin-top: 6rem;">
   <div class="container">
-    <div class="row">
-      <h1 style="text-align: left; float: left; color: #fff;">굿즈 둘러보기</h1>
-      <div class="col-lg-6 offset-lg-6">
+    <div class="row" style="padding-top: 10px; background-color: rgba(86, 86, 86, 0.452); height: auto;">
+      <div class="col-lg-6" style="text-align: left;">
+        <h1 style="text-align: left; color: #fff; margin-bottom: 30px;">굿즈 둘러보기</h1>
+      </div>
+      <div class="col-lg-6" style="margin-top: 10px;">
         <div class="d-flex align-items-center justify-content-start">
           {% url 'item:all' as item_all_url %}
-          <select class="custom-select custom-select mb-3 float-right" style="border: 2px solid rgba(255, 119, 119, 0.664); background-color: rgba(255, 255, 255, 0.735);" onchange="location.href = '{{ item_all_url }}?category=' + this.value;">
+          <select class="custom-select custom-select mb-3 float-right" style="border: 2px solid rgba(255, 150, 150, 0.664); background-color: rgba(255, 255, 255, 0.846);" onchange="location.href = '{{ item_all_url }}?category=' + this.value;">
             <option selected>굿즈 종류</option>
             <option value="all">전체</option>
             <option {% if selected_category == 'cloth' %}selected{% endif %} value="cloth">의류</option>
@@ -19,10 +21,10 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-bottom: 0;">
       {% for item in items %}
       <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
+        <div class="card h-100" style="background-color: rgba(255, 255, 255, 0.792);">
           <img src="{{ item.thumbnail.url }}" class="card-img-top" alt="{{ item.name }}">
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
@@ -34,34 +36,6 @@
       <div class="col-lg-4 col-md-6 mb-4"></div>
       {% endfor %}
     </div>
-
-    <nav aria-label="Page navigation">
-      <ul class="pagination justify-content-center">
-        {% if items.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ items.previous_page_number }}">이전</a>
-        </li>
-        {% endif %}
-
-        {% for i in items.paginator.page_range %}
-        {% if items.number == i %}
-        <li class="page-item active">
-          <span class="page-link">{{ i }}</span>
-        </li>
-        {% else %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-        </li>
-        {% endif %}
-        {% endfor %}
-
-        {% if items.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ items.next_page_number }}">다음</a>
-        </li>
-        {% endif %}
-      </ul>
-    </nav>
   </div>
 </div>
 <style>
@@ -76,6 +50,19 @@
   .card {
     height: 100%;
   }
+
+  /* Adjusted row styling */
+  .row {
+    background-color: rgba(86, 86, 86, 0.452);
+    margin-bottom: 0; /* Remove default margin-bottom */
+  }
+
+  /* Add a custom class to the footer to differentiate styling */
+  .custom-footer {
+    background-color: #f8f9fa; /* Specify desired footer background color */
+    padding: 20px; /* Add appropriate padding to the footer */
+  }
+
   @media (min-width: 992px) {
     .col-xl-4 {
       flex: 0 0 33.333333%;
@@ -90,4 +77,18 @@
     }
   }
 </style>
+<svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 79">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B5E2;stop-opacity:1" />
+      <stop offset="33.33%" style="stop-color:#00B5E2;stop-opacity:1" />
+      <stop offset="33.33%" style="stop-color:#EF3340;stop-opacity:1" />
+      <stop offset="66.66%" style="stop-color:#EF3340;stop-opacity:1" />
+      <stop offset="66.66%" style="stop-color:#509E2F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#509E2F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <title>footer-frame</title>
+  <path class="cls-2" d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z" transform="translate(0 -0.188)" fill="url(#grad1)" />
+</svg>
 {% endblock %}
