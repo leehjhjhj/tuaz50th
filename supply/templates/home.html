@@ -26,7 +26,6 @@
                             {% endfor %}
                         </div>
                         <form method="POST" action="{% url 'home' %}" class="form-guestbook">
-                            {% csrf_token %}
                             <input class="form-control" type="text" placeholder="방명록을 입력하세요!" aria-label="default input example" name="body" style="color: black;">
                             <button type="submit" class="btn btn-danger">작성하기</button>
                         </form>
