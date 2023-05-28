@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'tuaz50th.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'tuaz_db',
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': 'svc.sel4.cloudtype.app',
+        'PORT': config('DB_PORT')
     }
 }
 
@@ -130,7 +134,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static') # BASE_DIR/static
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+###########################AWS
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID') # .csv 파일에 있는 내용을 입력 Access key ID
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY') # .csv 파일에 있는 내용을 입력 Secret access key
+AWS_REGION = 'ap-northeast-2'
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'item','media')
-# 이용자가 업로드한 파일을 모아두는 곳
-MEDIA_URL = '/media/'
+###S3 Storages
+AWS_STORAGE_BUCKET_NAME = 'tuaz' # 설정한 버킷 이름
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
