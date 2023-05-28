@@ -15,15 +15,21 @@
                         </br> </br> 
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
-                <div class="col-lg-6 col-xl-6">
+                <div class="col-lg-5 col-xl-4">
                     <div class="image-container">
-                        {% for balloon in balloons %}
-                        <div class="balloon">
-                          <span class="balloon-content">{{ balloon.body }}</span>
+                        <div class="guestbook">
+                            {% for entry in guestbook_entries %}
+                            <div class="entry">
+                                <p>{{ entry.body }}</p>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-                      </div>
-                      
+                        <form method="POST" action="{% url 'home' %}">
+                            {% csrf_token %}
+                            <input class="form-control-sm" type="text" placeholder="방명록을 입력하세요!" aria-label="default input example" name="body">
+                            <button type="submit" class="btn btn-danger">작성하기</button>
+                        </form>
+                    </div>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -42,57 +48,49 @@
         padding: 20px;
         background-color: rgba(155, 0, 0, 0.59);
         }
+        
         .image-container {
         position: relative;
+        }
+            
+        .guestbook {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        align-items: flex-end;
-        height: 400px; /* 구름의 높이에 따라 조정하세요 */
-    }
-
-    .balloon {
-        position: absolute;
-        bottom: 0;
-        transform: translateY(100%);
+        align-items: flex-start;
+        max-height: 360px;
+        overflow-y: hidden;
         padding: 10px;
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        animation: slideUp 1s ease-in-out forwards, float 3s ease-in-out infinite alternate;
-        margin: 0 10px;
-    }
+        margin-bottom: 20px;
 
-    .balloon:nth-child(2) {
-        animation-delay: 0.2s;
-        bottom: 60px;
-        margin-right: 0px;
-    }
+        align-items: center;
+        }
 
-    .balloon:nth-child(3) {
-        animation-delay: 0.4s;
-        bottom: 90px;
-        float: right;
-    }
-    .balloon:nth-child(4) {
-        animation-delay: 0.6s;
-        bottom: 120px;
-    }
-    /* 추가적인 구름에 대한 스타일은 위와 같이 반복해서 작성하세요 */
+        .entry {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: rgba(255, 255, 255, 0.13);
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        }
 
-    @keyframes float {
-        0% {
-            transform: translateY(0);
+        .entry p {
+        margin: 0;
         }
-        50% {
-            transform: translateY(-20px);
+
+        .form-control-sm {
+        margin-bottom: 10px;
         }
-        100% {
-            transform: translateY(0);
+
+        .btn-outline-danger {
+        margin-bottom: 10px;
         }
-    }
+       
     </style>
 </header>
     
-    <!-- <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 79">
+    <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 79">
         <defs>
           <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" style="stop-color:#00B5E2;stop-opacity:1" />
@@ -105,7 +103,7 @@
         </defs>
         <title>footer-frame</title>
         <path class="cls-2" d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z" transform="translate(0 -0.188)" fill="url(#grad1)" />
-      </svg> -->
+      </svg>
       
       
 {% endblock %}
