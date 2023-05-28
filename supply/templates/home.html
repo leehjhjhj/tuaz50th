@@ -17,10 +17,13 @@
                 </div> <!-- end of col -->
                 <div class="col-lg-6 col-xl-6">
                     <div class="image-container">
-                        <div class="img-wrapper">
-                            <img class="img-fluid" src="{% static '' %}" alt="alternative">
-                        </div> <!-- end of img-wrapper -->
-                    </div> <!-- end of image-container -->
+                        {% for balloon in balloons %}
+                        <div class="balloon">
+                          <span class="balloon-content">{{ balloon.body }}</span>
+                        </div>
+                        {% endfor %}
+                      </div>
+                      
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
@@ -37,10 +40,55 @@
         } 
         .text-container {
         padding: 20px;
-        background-color: rgba(50, 50, 50, 0.59);
+        background-color: rgba(155, 0, 0, 0.59);
         }
-        
-    </style>
+        .image-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 400px; /* 구름의 높이에 따라 조정하세요 */
+    }
+
+    .balloon {
+        position: absolute;
+        bottom: 0;
+        transform: translateY(100%);
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: slideUp 1s ease-in-out forwards, float 3s ease-in-out infinite alternate;
+        margin: 0 10px;
+    }
+
+    .balloon:nth-child(2) {
+        animation-delay: 0.2s;
+        bottom: 60px;
+        margin-right: 0px;
+    }
+
+    .balloon:nth-child(3) {
+        animation-delay: 0.4s;
+        bottom: 90px;
+        float: right;
+    }
+    .balloon:nth-child(4) {
+        animation-delay: 0.6s;
+        bottom: 120px;
+    }
+    /* 추가적인 구름에 대한 스타일은 위와 같이 반복해서 작성하세요 */
+
+    @keyframes float {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
     </style>
 </header>
     
