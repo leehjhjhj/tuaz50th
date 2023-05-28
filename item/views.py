@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Item
+from .models import *
 
 def all_items(request):
     category = request.GET.get("category")
@@ -15,9 +15,13 @@ def all_items(request):
     return render(request, 'all_items.html', context)
 
 def item_detail(request, item_id):
-    item = get_object_or_404(Item, pk=item_id)
+    item_detail = get_object_or_404(Item, pk=item_id)
+    item_photos = ItemImage.objects.filter(item=item_id)
+    related_item = Item.objects.filter(category=item_detail.category)
     context = {
-        'item': item
+        'item_detail': item_detail,
+        'item_photos': item_photos,
+        'related_item': related_item,
     }
     return render(request, 'item_detail.html', context)
 

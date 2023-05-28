@@ -6,5 +6,6 @@ app_name = 'item'
 
 urlpatterns = [
     path('', all_items, name='all'),
+    path('<int:item_id>/', item_detail, name='detail'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # 코드 추가!
