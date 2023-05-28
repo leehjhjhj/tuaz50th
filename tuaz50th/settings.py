@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'supply',
     'guestbook',
+    'item',
 ]
 
 MIDDLEWARE = [
@@ -115,15 +117,20 @@ USE_I18N = True
 
 USE_TZ = True
 STATICFILES_DIRS = [
-    Path(BASE_DIR, 'supply', 'static'), # BASE_DIR/apply/static
+    os.path.join(BASE_DIR, 'supply', 'static'),
+   # BASE_DIR/apply/static
 ]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = Path(BASE_DIR, 'static') # BASE_DIR/static
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # BASE_DIR/static
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'item','media')
+# 이용자가 업로드한 파일을 모아두는 곳
+MEDIA_URL = '/media/'

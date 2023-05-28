@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="margin-top: 6rem;">
+  <div class="container">
+    <div class="row">
+      <h1 style="text-align: left; float: left; color: #fff;">굿즈 둘러보기</h1>
+      <div class="col-lg-6 offset-lg-6">
+        <div class="d-flex align-items-center justify-content-start">
+          {% url 'item:all' as item_all_url %}
+          <select class="custom-select custom-select mb-3 float-right" style="border: 2px solid rgba(255, 119, 119, 0.664); background-color: rgba(255, 255, 255, 0.735);" onchange="location.href = '{{ item_all_url }}?category=' + this.value;">
+            <option selected>굿즈 종류</option>
+            <option value="all">전체</option>
+            <option {% if selected_category == 'cloth' %}selected{% endif %} value="cloth">의류</option>
+            <option {% if selected_category == 'cup' %}selected{% endif %} value="cup">컵</option>
+            <option {% if selected_category == 'etc' %}selected{% endif %} value="etc">기타</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {% for item in items %}
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+          <img src="{{ item.thumbnail.url }}" class="card-img-top" alt="{{ item.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <h5 class="card-title">{{ item.price }}원</h5>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-lg-4 col-md-6 mb-4"></div>
+      {% endfor %}
+    </div>
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        {% if items.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ items.previous_page_number }}">이전</a>
+        </li>
+        {% endif %}
+
+        {% for i in items.paginator.page_range %}
+        {% if items.number == i %}
+        <li class="page-item active">
+          <span class="page-link">{{ i }}</span>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if items.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ items.next_page_number }}">다음</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</div>
+<style>
+  body {
+    background-image: url('{% static "images/ballon.jpg" %}');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .card {
+    height: 100%;
+  }
+  @media (min-width: 992px) {
+    .col-xl-4 {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .col-xl-4 {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+  }
+</style>
+{% endblock %}
