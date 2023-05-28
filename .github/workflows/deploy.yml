@@ -20,7 +20,7 @@ jobs:
           token: ${{ secrets.CLOUDTYPE_TOKEN }}
           project: hyunjeyoonji/tuaz50th
           stage: main
-          yaml: >
+          yaml: |
             name: tuaz50th
             app: python@3.9
             options:
