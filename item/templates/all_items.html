@@ -24,17 +24,18 @@
     <div class="row" style="margin-bottom: 0;">
       {% for item in items %}
       <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card h-100 card-hover">
-          <div class="card-img-container">
-            <img src="{{ item.thumbnail.url }}" class="card-img-top" alt="{{ item.name }}">
-            <div class="overlay"></div>
+        <a href="{% url 'item:detail' item.id %}" style="text-decoration: none;">
+          <div class="card h-100 card-hover">
+            <div class="card-img-container">
+              <img src="{{ item.thumbnail.url }}" class="card-img-top" alt="{{ item.name }}">
+              <div class="overlay"></div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{ item.name }}</h5>
+              <h5 class="card-title">{{ item.price }}원</h5>
+            </div>
           </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ item.name }}</h5>
-            <h5 class="card-title">{{ item.price }}원</h5>
-            <a class="btn btn-primary" href="{% url 'item:detail' item.id %}">View Details</a>
-          </div>
-        </div>
+        </a>
       </div>
       {% empty %}
       <div class="col-xl-4 col-md-6 mb-4"></div>
