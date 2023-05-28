@@ -16,7 +16,7 @@
                         </br> </br> 
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
-                <div class="col-lg-5 col-xl-4">
+                <div class="col-lg-5 col-xl-5">
                     <div class="image-container">
                         <div class="guestbook">
                             {% for entry in guestbook_entries %}
@@ -27,7 +27,7 @@
                         </div>
                         <form method="POST" action="{% url 'home' %}" class="form-guestbook">
                             {% csrf_token %}
-                            <input class="form-control-sm" type="text" placeholder="방명록을 입력하세요!" aria-label="default input example" name="body" style="color: black;">
+                            <input class="form-control" type="text" placeholder="방명록을 입력하세요!" aria-label="default input example" name="body" style="color: black;">
                             <button type="submit" class="btn btn-danger">작성하기</button>
                         </form>
                     </div>
@@ -53,6 +53,7 @@
         
         .image-container {
         position: relative;
+        padding-bottom: 60px;
         }
             
         .guestbook {
@@ -63,9 +64,8 @@
         max-height: 360px;
         overflow-y: hidden;
         padding: 10px;
-        margin-bottom: 20px;
-
         align-items: center;
+ 
         }
 
         .entry {
@@ -81,7 +81,7 @@
         margin: 0;
         }
 
-        .form-control-sm {
+        .form-control {
         margin-bottom: 10px;
         background-color: rgba(255, 255, 255, 0.345);
         color: black;
@@ -101,6 +101,7 @@
         .form-guestbook input,
         .form-guestbook button {
             width: 100%;
+            margin-bottom: 20px;
         }
     </style>
 </header>
