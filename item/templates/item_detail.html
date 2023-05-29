@@ -29,7 +29,7 @@
                 </div>
                 
                 <div class="col-md-6 " style="padding-top: 30px; text-align: center;">
-                    <p>Detail</p>
+                    <h2 class="fw-bolder mb-4">detail</h2>
                     {% for item_photo in item_photos %}
                         <div class="item-photo">
                             <img src="{{ item_photo.image.url }}" alt="Item Photo" class="img-fluid img-cover">
@@ -44,41 +44,31 @@
 <section class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">
       <h2 class="fw-bolder mb-4">Related products</h2>
-      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+      <div class="row" style="margin-bottom: 0;">
         {% for related_item in related_items %}
-        <div class="col mb-5">
+        <div class="col-xl-4 col-md-6 mb-4">
           <a href="{% url 'item:detail' related_item.id %}" style="text-decoration: none;">
             <div class="card h-100 card-hover">
               <div class="card-img-container">
-                <!-- Product image -->
-                <div class="image-container">
-                  <img class="card-img-top" src="{{ related_item.thumbnail.url }}" alt="{{ related_item.name }}" />
+                <div class="image-wrapper">
+                  <img src="{{ related_item.thumbnail.url }}" class="card-img-top" alt="{{ related_item.name }}">
                 </div>
-                <!-- Image overlay -->
                 <div class="overlay"></div>
               </div>
-              <!-- Product details -->
-              <div class="card-body p-4">
-                <div class="text-center">
-                  <!-- Product name -->
-                  <h5 class="fw-bolder">{{ related_item.name }}</h5>
-                  <!-- Product price -->
-                  <span class="text-muted">{{ related_item.price }}원</span>
-                </div>
-              </div>
-              <!-- Product actions -->
-              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center">
-                  <a class="btn btn-outline-dark mt-auto" href="{% url 'item:detail' related_item.id %}">View details</a>
-                </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ related_item.name }}</h5>
+                <h5 class="card-title">{{ related_item.price }}원</h5>
               </div>
             </div>
           </a>
         </div>
+        {% empty %}
+        <div class="col-xl-4 col-md-6 mb-4"></div>
         {% endfor %}
-      </div>
     </div>
   </section>
+  
+  
   
   
     <style>
