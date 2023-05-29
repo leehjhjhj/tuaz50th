@@ -7,10 +7,12 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def balloon_list(request):
     if request.method == 'POST':
-        body = request.POST.get('body')
-        if body:
-            Balloon.objects.create(body=body)
-        return redirect('home')  # 방명록 작성 후 리다이렉트
-
+        form = BalloonForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = BalloonForm()
+    
     guestbook_entries = Balloon.objects.all().order_by('-id')
-    return render(request, 'home.html', {'guestbook_entries': guestbook_entries})
+    return render(request, 'home.html', {'guestbook_entries': guestbook_entries, 'form': form})
