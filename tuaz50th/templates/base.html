@@ -55,7 +55,10 @@
             <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Tivo</a> -->
 
             <!-- Image Logo -->
-            <a class="navbar-brand logo-image" href="{% url 'home' %}"><img src="{% static '' %}" alt="alternative" style="width: 80%;"></a> 
+            <a class="navbar-brand logo-image" href="{% url 'home' %}">
+                <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/static/%ED%84%B0%ED%82%A4-001+(1).png" alt="alternative" style=" width: 160px; max-width: 100%; height: auto;">
+            </a>
+            
             
             <!-- Mobile Menu Toggle Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,7 +90,7 @@
     <style>
         .navbar-custom {
             background-color: rgba(53, 53, 53, 0.524);
-            padding: 15px;
+            padding: 2px;
         }
     
         .navbar-custom .navbar-brand img {
