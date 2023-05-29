@@ -19,57 +19,53 @@
                         </div>
                         <p class="lead">{{ item_detail.body }}</p>
                         <div class="d-flex align-items-center">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
                         </div>
                     </div>
                 </div>
                 
-                <div class="col-md-6 " style="padding-top: 30px; text-align: center;">
-                    <h2 class="fw-bolder mb-4">detail</h2>
-                    {% for item_photo in item_photos %}
-                        <div class="item-photo">
-                            <img src="{{ item_photo.image.url }}" alt="Item Photo" class="img-fluid img-cover">
-                            <br>
-                        </div>
-                    {% endfor %}
+                <div class="col-md-6" style="padding-top: 30px; text-align: center;">
+                    <h2 class="fw-bolder mb-4">Detail</h2>
+                    <div style="display: inline-block; text-align: center;">
+                        {% for item_photo in item_photos %}
+                            <div class="item-photo" style="width: 80%; display: inline-block;">
+                                <img src="{{ item_photo.image.url }}" alt="Item Photo" class="img-fluid img-cover">
+                                <br>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
+                
+        </div>
+    </section>
+  
+    <!-- Related items section -->
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder mb-4">Related products</h2>
+            <div class="row" style="margin-bottom: 0;">
+                {% for related_item in related_items %}
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <a href="{% url 'item:detail' related_item.id %}" style="text-decoration: none;">
+                        <div class="card h-100 card-hover">
+                            <div class="card-img-container">
+                                <div class="image-wrapper">
+                                    <img src="{{ related_item.thumbnail.url }}" class="card-img-top" alt="{{ related_item.name }}">
+                                </div>
+                                <div class="overlay"></div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ related_item.name }}</h5>
+                                <h5 class="card-title">{{ related_item.price }}원</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                <div class="col-xl-4 col-md-6 mb-4"></div>
+                {% endfor %}
             </div>
         </div>
     </section>
-<!-- Related items section -->
-<section class="py-5 bg-light">
-    <div class="container px-4 px-lg-5 mt-5">
-      <h2 class="fw-bolder mb-4">Related products</h2>
-      <div class="row" style="margin-bottom: 0;">
-        {% for related_item in related_items %}
-        <div class="col-xl-4 col-md-6 mb-4">
-          <a href="{% url 'item:detail' related_item.id %}" style="text-decoration: none;">
-            <div class="card h-100 card-hover">
-              <div class="card-img-container">
-                <div class="image-wrapper">
-                  <img src="{{ related_item.thumbnail.url }}" class="card-img-top" alt="{{ related_item.name }}">
-                </div>
-                <div class="overlay"></div>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">{{ related_item.name }}</h5>
-                <h5 class="card-title">{{ related_item.price }}원</h5>
-              </div>
-            </div>
-          </a>
-        </div>
-        {% empty %}
-        <div class="col-xl-4 col-md-6 mb-4"></div>
-        {% endfor %}
-    </div>
-  </section>
-  
-  
-  
   
     <style>
         .big-image-container {
@@ -77,22 +73,26 @@
             float: left;
             position: relative;
             overflow: hidden;
-            }
+            padding-right: 15px;
+        }
 
         .image-container {
             width: 100%;
             position: relative;
             overflow: hidden;
-            }
-        .card-img-top {
-            width:100%;
-            height:100%;
-            object-fit:cover;
         }
+
+        .card-img-top {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .info-container {
             width: 50%;
             float: right;
             margin-top: 10%;
+            padding-left: 15px;
         }
 
         .item-photo {
@@ -104,42 +104,44 @@
             object-fit: cover;
             width: 100%;
             height: 100%;
-            width: 70%;
         }
+
         .card {
-        height: 100%;
-    }
+            height: 100%;
+        }
 
-    .card-hover:hover {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
+        .card-hover:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
 
-    .card-img-container {
-        position: relative;
-    }
+        .card-img-container {
+            position: relative;
+        }
 
-    .card-img-container .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(144, 144, 144, 0.199);
-        opacity: 0;
-        z-index: 1;
-        transition: opacity 0.3s ease;
-    }
+        .card-img-container .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(144, 144, 144, 0.199);
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
 
-    .card-hover:hover .overlay {
-        opacity: 1;
-    }
+        .card-hover:hover .overlay {
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
-            .image-container,
+            .big-image-container,
             .info-container {
                 width: 100%;
                 float: none;
                 margin-right: 0;
+                padding: 0;
             }
-        }
+    }
     </style>
 {% endblock %}
