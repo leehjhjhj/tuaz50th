@@ -31,8 +31,8 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                2. 핸드폰 번호를 작성해주세요
-                                <input class="form-control" type="text" placeholder="010-xxxx-xxxx" aria-label=".form-control-lg example" name="">
+                                2. 핸드폰 번호를 작성해주세요 ('-' 없이 8자리)
+                                <input class="form-control" type="text" placeholder="010xxxxxxxx" aria-label=".form-control-lg example" name="">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
@@ -54,12 +54,28 @@
                             <br>
                             <div class="form-group">
                                 5. 상품을 선택해주세요
-                                <select style="width:180px;" name="category" class="form-control-select" id="spassword">
-                                    <option value="">준비중</option>
-                                    <option value="">준비중</option>
-                                    <option value="">준비중</option>
-                                </select>
+                                <div id="product-container">
+                                    <div class="product-container">
+                                        <div class="quantity-container">
+                                            <select style="width:180px;" name="category[]" class="form-control-select" id="product">
+                                                <option value="">선택해주세요</option>
+                                                <option value="product1">상품 1</option>
+                                                <option value="product2">상품 2</option>
+                                                <option value="product3">상품 3</option>
+                                            </select>
+                                            <div class="quantity-control">
+                                                개수:
+                                                <button type="button" class="quantity-btn" onclick="adjustQuantity(this, -1)">-</button>
+                                                <input type="number" name="quantity[]" min="1" value="1" style="width: 60px; text-align: center;">
+                                                <button type="button" class="quantity-btn" onclick="adjustQuantity(this, 1)">+</button>
+                                            </div>
+                                            <span class="remove-product" onclick="removeProduct(this)">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="add-btn" onclick="addProduct()">+</button>
                             </div>
+
                             <br>
                             <button type="submit" name="draft" class="form-control-submit-button">주문하기</button>
                         </form>
@@ -70,6 +86,70 @@
     </body> <!-- end of ex-header -->
     <!-- end of header -->
 
+    <script>
+        function addProduct() {
+            var container = document.getElementById('product-container');
+            var newProduct = document.createElement('div');
+            newProduct.className = 'product-container';
+
+            var select = document.createElement('select');
+            select.style.width = '180px';
+            select.name = 'category[]';
+            select.className = 'form-control-select';
+            
+            var option = document.createElement('option');
+            option.value = '';
+            option.textContent = '선택해주세요';
+            select.appendChild(option);
+
+            var option1 = document.createElement('option');
+            option1.value = 'product1';
+            option1.textContent = '상품 1';
+            select.appendChild(option1);
+
+            var option2 = document.createElement('option');
+            option2.value = 'product2';
+            option2.textContent = '상품 2';
+            select.appendChild(option2);
+
+            var option3 = document.createElement('option');
+            option3.value = 'product3';
+            option3.textContent = '상품 3';
+            select.appendChild(option3);
+
+            newProduct.appendChild(select);
+
+            var quantityInput = document.createElement('input');
+            quantityInput.type = 'number';
+            quantityInput.name = 'quantity[]';
+            quantityInput.min = '1';
+            quantityInput.value = '1';
+            quantityInput.style.width = '60px';
+            newProduct.appendChild(quantityInput);
+
+            var removeBtn = document.createElement('span');
+            removeBtn.className = 'remove-product';
+            removeBtn.textContent = '-';
+            removeBtn.setAttribute('onclick', 'removeProduct(this)');
+            newProduct.appendChild(removeBtn);
+
+            container.appendChild(newProduct);
+        }
+
+        function removeProduct(element) {
+            var container = document.getElementById('product-container');
+            container.removeChild(element.parentNode);
+        }
+        function adjustQuantity(button, value) {
+            var input = button.parentNode.querySelector('input[type="number"]');
+            var currentQuantity = parseInt(input.value);
+            var newQuantity = currentQuantity + value;
+
+            if (newQuantity >= 1) {
+                input.value = newQuantity;
+            }
+        }
+    </script>
 
 <style>
     body {
@@ -96,6 +176,41 @@
         .form-control-submit-button:hover {
             background-color: transparent;
             color: #ff0000;
+        }
+        .product-container {
+            margin-bottom: 20px;
+        }
+
+        .remove-product {
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .quantity-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .quantity-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            border: none;
+            background-color: #f5f5f5;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .add-btn {
+            margin-left: 10px;
         }
 </style>
 

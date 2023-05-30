@@ -10,17 +10,18 @@
                     <div class="text-container">
                         <br>
                         <h1>터키아제르바이잔어과</br>  50주년 기념샵</h1>
+                        <br>
                         <p class="p-large">Since 1973, 50th anniversary<br> 터키어과와 함께해주신 모든 분들께 감사드립니다. </p>
-                        <a class="btn-solid-lg page-scroll" href="">캐릭터소개</a>
+                        <!-- <a class="btn-solid-lg page-scroll" href="">캐릭터소개</a>
                         <a class="btn-solid-lg page-scroll" href="{% url 'item:all' %}">굿즈둘러보기</a>
-                            <a class="btn-solid-lg page-scroll" href="{% url 'supply:buy' %}">굿즈구매하기</a>
+                        <a class="btn-solid-lg page-scroll" href="{% url 'supply:buy' %}">굿즈구매하기</a> -->
                         </br> </br> 
                     </div> <!-- end of text-container -->
                 </div> <!-- end of col -->
                 <div class="col-lg-5 col-xl-5">
                     <div class="image-container">
                         <div class="guestbook">
-                            {% for entry in guestbook_entries %}
+                            {% for entry in guestbook_entries|slice:":6" %}
                             <div class="entry">
                                 <p>{{ entry.body }}</p>
                             </div>
@@ -58,7 +59,6 @@
         }
             
         .guestbook {
-        display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: flex-start;
@@ -66,20 +66,27 @@
         overflow-y: hidden;
         padding: 10px;
         align-items: center;
- 
+        margin-top: 60px;
         }
-
+        @media (min-width: 375px) and (max-width: 1200px) {
+            .guestbook {
+            margin-top: 0px;
+            }
+        }
+        
         .entry {
         width: 100%;
-        padding: 10px;
+        padding: 5px;
         margin-bottom: 10px;
-        background-color: rgba(255, 255, 255, 0.652);
+        background-color: rgba(255, 255, 255, 0.301);
         border: 1px solid #ddd;
         border-radius: 4px;
+        overflow: scroll;
         }
 
         .entry p {
         margin: 0;
+        font-weight: bold;
         }
 
         .form-control {
@@ -93,10 +100,9 @@
         }
         .form-guestbook {
             position: absolute;
-            bottom: 5;
             left: 0;
             width: 100%;
-            padding: 10px;
+            padding: 3px;
         }
 
         .form-guestbook input,

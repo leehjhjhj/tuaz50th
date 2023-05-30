@@ -7,6 +7,8 @@ class Item(models.Model):
     body = models.TextField(null = True)
     thumbnail = models.ImageField(upload_to='item_thumbnails/', null=True)
 
+    
+
 class ItemImage(models.Model):
     item = models.ForeignKey(Item, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='item_images/')
