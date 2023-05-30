@@ -393,9 +393,9 @@ input[type='checkbox'] {
 	display: inline-block;
 	width: 50%;
 	height: 3.125rem;
-	border: 1px solid #ff0000;
+	border: 1px solid #E67800;
 	border-radius: 1.5rem;
-	background-color: #ff0000;
+	background-color: #E67800;
 	color: #fff;
 	font: 700 0.875rem/0 "Open Sans", sans-serif;
 	cursor: pointer;
@@ -405,7 +405,7 @@ input[type='checkbox'] {
 
 .form-control-submit-button:hover {
 	background-color: transparent;
-	color: #ff0000;
+	color: #E67800;
 }
 
 /* Form Success And Error Message Formatting */
