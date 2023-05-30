@@ -87,59 +87,7 @@
     <!-- end of header -->
 
     <script>
-        function addProduct() {
-            var container = document.getElementById('product-container');
-            var newProduct = document.createElement('div');
-            newProduct.className = 'product-container';
-
-            var select = document.createElement('select');
-            select.style.width = '180px';
-            select.name = 'category[]';
-            select.className = 'form-control-select';
-            
-            var option = document.createElement('option');
-            option.value = '';
-            option.textContent = '선택해주세요';
-            select.appendChild(option);
-
-            var option1 = document.createElement('option');
-            option1.value = 'product1';
-            option1.textContent = '상품 1';
-            select.appendChild(option1);
-
-            var option2 = document.createElement('option');
-            option2.value = 'product2';
-            option2.textContent = '상품 2';
-            select.appendChild(option2);
-
-            var option3 = document.createElement('option');
-            option3.value = 'product3';
-            option3.textContent = '상품 3';
-            select.appendChild(option3);
-
-            newProduct.appendChild(select);
-
-            var quantityInput = document.createElement('input');
-            quantityInput.type = 'number';
-            quantityInput.name = 'quantity[]';
-            quantityInput.min = '1';
-            quantityInput.value = '1';
-            quantityInput.style.width = '60px';
-            newProduct.appendChild(quantityInput);
-
-            var removeBtn = document.createElement('span');
-            removeBtn.className = 'remove-product';
-            removeBtn.textContent = '-';
-            removeBtn.setAttribute('onclick', 'removeProduct(this)');
-            newProduct.appendChild(removeBtn);
-
-            container.appendChild(newProduct);
-        }
-
-        function removeProduct(element) {
-            var container = document.getElementById('product-container');
-            container.removeChild(element.parentNode);
-        }
+        // Function to adjust quantity by clicking the + or - button
         function adjustQuantity(button, value) {
             var input = button.parentNode.querySelector('input[type="number"]');
             var currentQuantity = parseInt(input.value);
@@ -148,6 +96,74 @@
             if (newQuantity >= 1) {
                 input.value = newQuantity;
             }
+        }
+
+        // Function to add a new product input field
+        function addProduct() {
+            var container = document.getElementById('product-container');
+            var newProduct = document.createElement('div');
+            newProduct.className = 'product-container';
+
+            var quantityContainer = document.createElement('div');
+            quantityContainer.className = 'quantity-container';
+
+            var select = document.createElement('select');
+            select.style.width = '180px';
+            select.name = 'category[]';
+            select.className = 'form-control-select';
+
+            var option = document.createElement('option');
+            option.value = '';
+            option.textContent = '선택해주세요';
+            select.appendChild(option);
+
+            // Add more options here...
+
+            var quantityControl = document.createElement('div');
+            quantityControl.className = 'quantity-control';
+
+            var minusBtn = document.createElement('button');
+            minusBtn.type = 'button';
+            minusBtn.className = 'quantity-btn';
+            minusBtn.textContent = '-';
+            minusBtn.setAttribute('onclick', 'adjustQuantity(this, -1)');
+
+            var input = document.createElement('input');
+            input.type = 'number';
+            input.name = 'quantity[]';
+            input.min = '1';
+            input.value = '1';
+            input.style.width = '60px';
+            input.style.textAlign = 'center';
+
+            var plusBtn = document.createElement('button');
+            plusBtn.type = 'button';
+            plusBtn.className = 'quantity-btn';
+            plusBtn.textContent = '+';
+            plusBtn.setAttribute('onclick', 'adjustQuantity(this, 1)');
+
+            var removeBtn = document.createElement('span');
+            removeBtn.className = 'remove-product';
+            removeBtn.textContent = '-';
+            removeBtn.setAttribute('onclick', 'removeProduct(this)');
+
+            quantityControl.appendChild(minusBtn);
+            quantityControl.appendChild(input);
+            quantityControl.appendChild(plusBtn);
+
+            quantityContainer.appendChild(select);
+            quantityContainer.appendChild(quantityControl);
+            quantityContainer.appendChild(removeBtn);
+
+            newProduct.appendChild(quantityContainer);
+
+            container.appendChild(newProduct);
+        }
+
+        // Function to remove the product input field
+        function removeProduct(element) {
+            var container = document.getElementById('product-container');
+            container.removeChild(element.parentNode.parentNode);
         }
     </script>
 
