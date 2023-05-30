@@ -13,7 +13,7 @@
     <!-- end of preloader -->
 
     <!-- Header -->
-    <header id="header" class="ex-2-header">
+    <body id="header" class="ex-2-header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -26,13 +26,13 @@
                             <br>
                             <div class="form-group">
                                 1. 이름를 작성해주세요
-                                <input class="form-control form-control-lg" type="text" placeholder="" aria-label=".form-control-lg example" name="">
+                                <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
                             <div class="form-group">
                                 2. 핸드폰 번호를 작성해주세요
-                                <input class="form-control form-control-lg" type="text" placeholder="010-xxxx-xxxx" aria-label=".form-control-lg example" name="">
+                                <input class="form-control" type="text" placeholder="010-xxxx-xxxx" aria-label=".form-control-lg example" name="">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
@@ -48,7 +48,7 @@
                             <br>
                             <div class="form-group">
                                 4. 학번을 입력해주세요(example: 19)
-                                <input class="form-control form-control-lg" type="text" placeholder="" aria-label=".form-control-lg example" name="" style="width:180px;" >
+                                <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="" style="width:180px;" >
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
@@ -67,20 +67,21 @@
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
         </div> <!-- end of container -->
-    </header> <!-- end of ex-header -->
+    </body> <!-- end of ex-header -->
     <!-- end of header -->
 
 
 <style>
-    header {
+    body {
             background-image: url('{% static "images/ballon.jpg" %}');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+        }
+        .container {
             padding-bottom: 20px;
         }
-
         .form-control-submit-button {
             display: inline-block;
             width: 50%;
