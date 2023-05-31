@@ -54,8 +54,8 @@
                                                     <option value="{{ item.name }}" data-price="{{ item.price }}" data-category="{{ item.category }}">{{ item.name }}</option>
                                                 {% endfor %}
                                             </select>                                                                            
-                                            <select style="width:80px; display:none; margin-left: 10px;" name="size-category[]" class="form-control-select" id="product-size">
-                                                <option value="">사이즈</option>
+                                            <select style="width:60px; display:none; margin-left: 10px; " name="size-category[]" class="form-control-select" id="product-size">
+                                                <option value="">size</option>
                                                 <option value="{{ item.name }}-s">S</option>
                                                 <option value="{{ item.name }}-m">M</option>
                                                 <option value="{{ item.name }}-L">L</option>
@@ -172,12 +172,12 @@
     plusBtn.setAttribute('onclick', 'adjustQuantity(this, 1)');
 
     var productSizeSelect = document.createElement('select');
-    productSizeSelect.style.width = '80px';
+    productSizeSelect.style.width = '60px';
     productSizeSelect.style.display = 'none';
     productSizeSelect.name = 'size-category[]';
     productSizeSelect.className = 'form-control-select';
     productSizeSelect.style.marginLeft = '10px'
-    productSizeSelect.innerHTML = '<option value="">사이즈</option>' +
+    productSizeSelect.innerHTML = '<option value="">size</option>' +
         '<option value="{{ item.name }}-s">S</option>' +
         '<option value="{{ item.name }}-m">M</option>' +
         '<option value="{{ item.name }}-L">L</option>';
