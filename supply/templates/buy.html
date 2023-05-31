@@ -49,17 +49,18 @@
                                     <div class="product-container">
                                         <div class="quantity-container">
                                             <select style="width:180px;" name="category[]" class="form-control-select" id="product" onchange="checkCategory(this)">
-                                                <option value="" data-price="0">선택해주세요</option>
+                                                <option value="" data-price="0" disabled selected style="display:none;">선택해주세요</option>
                                                 {% for item in all_item %}
                                                     <option value="{{ item.name }}" data-price="{{ item.price }}" data-category="{{ item.category }}">{{ item.name }}</option>
                                                 {% endfor %}
                                             </select>                                                                            
-                                            <select style="width:60px; display:none; margin-left: 10px; " name="size-category[]" class="form-control-select" id="product-size">
-                                                <option value="">size</option>
+                                            <select style="width:60px; display:none; margin-left: 10px;" name="size-category[]" class="form-control-select" id="product-size">
+                                                <option value="" disabled selected style="display:none;">size</option>
                                                 <option value="{{ item.name }}-s">S</option>
                                                 <option value="{{ item.name }}-m">M</option>
                                                 <option value="{{ item.name }}-L">L</option>
                                             </select>
+                                            
                                             <div class="quantity-control">
                                                 <div style="font-size: small;">개수:</div>
                                                 
@@ -137,6 +138,9 @@
     var option = document.createElement('option');
     option.value = '';
     option.textContent = '선택해주세요';
+    option.setAttribute('disabled', 'disabled');
+    option.setAttribute('selected', 'selected');
+    option.setAttribute('style', 'display:none;');
     option.dataset.price = '0';
     select.appendChild(option);
 
@@ -183,7 +187,7 @@
     productSizeSelect.name = 'size-category[]';
     productSizeSelect.className = 'form-control-select';
     productSizeSelect.style.marginLeft = '10px'
-    productSizeSelect.innerHTML = '<option value="">size</option>' +
+    productSizeSelect.innerHTML = '<option value="" disabled selected style="display:none;">size</option>' +
         '<option value="{{ item.name }}-s">S</option>' +
         '<option value="{{ item.name }}-m">M</option>' +
         '<option value="{{ item.name }}-L">L</option>';
@@ -327,7 +331,7 @@ function checkCategory(select) {
         .add-btn:hover {
             background-color: #a8e8fd;
         }
-    
+        
 
 </style>
 
