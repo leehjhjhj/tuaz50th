@@ -210,19 +210,26 @@
 function checkCategory(select) {
     var productContainer = select.closest('.product-container');
     var quantityInput = productContainer.querySelector('input[type="number"]');
+
     var quantity = parseInt(quantityInput.value);
     var selectedOption = select.options[select.selectedIndex];
     var price = parseInt(selectedOption.dataset.price);
 
-    // Update total price if quantity is 1
+    var category = selectedOption.getAttribute('data-category');
+    var productSizeSelect = select.parentNode.querySelector('select[name="size-category[]"]');
+
+    if (category === 'cloth') {
+        productSizeSelect.style.display = 'block';
+    } else {
+        productSizeSelect.style.display = 'none';
+    }
+
     if (quantity === 1) {
-        var totalPrice =  price * quantity;
+        var totalPrice = price * quantity;
         document.getElementById('total-price').textContent = totalPrice;
         updateTotalPrice();
     }
 }
-
-
         // Function to remove the product input field
         function removeProduct(element) {
             var container = document.getElementById('product-container');
