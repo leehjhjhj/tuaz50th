@@ -2,16 +2,6 @@
 {% block content %}
 {% load static %}
     
-    <!-- Preloader -->
-	<div class="spinner-wrapper">
-        <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-        </div>
-    </div>
-    <!-- end of preloader -->
-
     <!-- Header -->
     <body id="header" class="ex-2-header">
         <div class="container">
@@ -57,11 +47,32 @@
                                 <div id="product-container">
                                     <div class="product-container">
                                         <div class="quantity-container">
-                                            <select style="width:180px;" name="category[]" class="form-control-select" id="product">
+                                            <select style="width:180px;" name="category[]" class="form-control-select" id="product" onchange="checkCategory(this)">
                                                 <option value="">선택해주세요</option>
-                                                <option value="product1">상품 1</option>
-                                                <option value="product2">상품 2</option>
-                                                <option value="product3">상품 3</option>
+                                                {% for item in all_item %}
+                                                    <option value="{{ item.name }}" data-price="{{ item.price }}" data-category="{{ item.category }}">{{ item.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            
+                                            <script>
+                                                function checkCategory(select) {
+                                                    var selectedOption = select.options[select.selectedIndex];
+                                                    var category = selectedOption.dataset.category;
+                                                    var productSizeSelect = document.getElementById('product-size');
+                                            
+                                                    if (category === 'cloth') {
+                                                        productSizeSelect.style.display = 'block';
+                                                    } else {
+                                                        productSizeSelect.style.display = 'none';
+                                                    }
+                                                }
+                                            </script>
+                                            
+                                            <select style="width:180px; display:none;" name="size-category[]" class="form-control-select" id="product-size">
+                                                <option value="">사이즈선택</option>
+                                                <option value="{{ item.name }}-s">S</option>
+                                                <option value="{{ item.name }}-m">M</option>
+                                                <option value="{{ item.name }}-L">L</option>
                                             </select>
                                             <div class="quantity-control">
                                                 개수:
@@ -69,15 +80,17 @@
                                                 <input type="number" name="quantity[]" min="1" value="1" style="width: 60px; text-align: center;">
                                                 <button type="button" class="quantity-btn" onclick="adjustQuantity(this, 1)">+</button>
                                             </div>
-                                            <span class="remove-product" onclick="removeProduct(this)">-</span>
                                         </div>
                                     </div>
                                 </div>
                                 <button type="button" class="add-btn" onclick="addProduct()">+</button>
                             </div>
-
+                            <div id="total-price-container">
+                                총 가격: <span id="total-price">0</span>
+                            </div>
                             <br>
                             <button type="submit" name="draft" class="form-control-submit-button">주문하기</button>
+
                         </form>
                     </div> <!-- end of form container -->
                 </div> <!-- end of col -->
@@ -97,7 +110,21 @@
                 input.value = newQuantity;
             }
         }
+        function updateTotalPrice() {
+        var products = document.querySelectorAll('.product-container');
+        var totalPrice = 0;
 
+        products.forEach(function(product) {
+            var select = product.querySelector('select');
+            var quantity = product.querySelector('input[type="number"]').value;
+            var selectedOption = select.options[select.selectedIndex];
+            var price = parseInt(selectedOption.dataset.price);
+
+            totalPrice += price * quantity;
+        });
+
+        document.getElementById('total-price').textContent = totalPrice;
+    }
         // Function to add a new product input field
         function addProduct() {
             var container = document.getElementById('product-container');
@@ -117,7 +144,17 @@
             option.textContent = '선택해주세요';
             select.appendChild(option);
 
-            // Add more options here...
+            // Retrieve the existing product options
+            var existingOptions = document.querySelectorAll('#product option');
+            for (var i = 1; i < existingOptions.length; i++) {
+                var existingOption = existingOptions[i];
+                var clonedOption = document.createElement('option');
+                clonedOption.value = existingOption.value;
+                clonedOption.setAttribute('data-price', existingOption.getAttribute('data-price'));
+                clonedOption.textContent = existingOption.textContent;
+                select.appendChild(clonedOption);
+            }
+
 
             var quantityControl = document.createElement('div');
             quantityControl.className = 'quantity-control';
@@ -146,7 +183,8 @@
             removeBtn.className = 'remove-product';
             removeBtn.textContent = '-';
             removeBtn.setAttribute('onclick', 'removeProduct(this)');
-
+            
+            
             quantityControl.appendChild(minusBtn);
             quantityControl.appendChild(input);
             quantityControl.appendChild(plusBtn);
@@ -158,7 +196,10 @@
             newProduct.appendChild(quantityContainer);
 
             container.appendChild(newProduct);
+
+            updateTotalPrice();
         }
+
 
         // Function to remove the product input field
         function removeProduct(element) {
