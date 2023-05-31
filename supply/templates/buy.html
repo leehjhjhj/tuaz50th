@@ -49,7 +49,7 @@
                                     <div class="product-container">
                                         <div class="quantity-container">
                                             <select style="width:180px;" name="category[]" class="form-control-select" id="product" onchange="checkCategory(this)">
-                                                <option value="">선택해주세요</option>
+                                                <option value="" data-price="0">선택해주세요</option>
                                                 {% for item in all_item %}
                                                     <option value="{{ item.name }}" data-price="{{ item.price }}" data-category="{{ item.category }}">{{ item.name }}</option>
                                                 {% endfor %}
@@ -95,6 +95,7 @@
 
             if (newQuantity >= 1) {
                 input.value = newQuantity;
+                updateTotalPrice();
             }
         }
         function updateTotalPrice() {
@@ -102,11 +103,11 @@
         var totalPrice = 0;
 
         products.forEach(function(product) {
-            var select = product.querySelector('select');
-            var quantity = product.querySelector('input[type="number"]').value;
+            var select = product.querySelector('.form-control-select');
+            var quantity = parseInt(product.querySelector('input[type="number"]').value);
             var selectedOption = select.options[select.selectedIndex];
             var price = parseInt(selectedOption.dataset.price);
-
+            console.log(select.options[select.selectedIndex])
             totalPrice += price * quantity;
         });
 
@@ -132,6 +133,7 @@
     var option = document.createElement('option');
     option.value = '';
     option.textContent = '선택해주세요';
+    option.dataset.price = '0';
     select.appendChild(option);
 
     // Retrieve the existing product options
@@ -201,20 +203,22 @@
     newProduct.appendChild(quantityContainer);
 
     container.appendChild(newProduct);
-
     updateTotalPrice();
 }
 
 
 function checkCategory(select) {
+    var productContainer = select.closest('.product-container');
+    var quantityInput = productContainer.querySelector('input[type="number"]');
+    var quantity = parseInt(quantityInput.value);
     var selectedOption = select.options[select.selectedIndex];
-    var category = selectedOption.getAttribute('data-category');
-    var productSizeSelect = select.parentNode.querySelector('select[name="size-category[]"]');
+    var price = parseInt(selectedOption.dataset.price);
 
-    if (category === 'cloth') {
-        productSizeSelect.style.display = 'block';
-    } else {
-        productSizeSelect.style.display = 'none';
+    // Update total price if quantity is 1
+    if (quantity === 1) {
+        var totalPrice =  price * quantity;
+        document.getElementById('total-price').textContent = totalPrice;
+        updateTotalPrice();
     }
 }
 
@@ -223,6 +227,7 @@ function checkCategory(select) {
         function removeProduct(element) {
             var container = document.getElementById('product-container');
             container.removeChild(element.parentNode.parentNode);
+            updateTotalPrice();
         }
     </script>
 
@@ -279,6 +284,7 @@ function checkCategory(select) {
             height: 24px;
             border-radius: 50%;
             background-color: #a0a0a0;
+            transition: background-color 0.3s ease;
             color: #fff;
             border: none;
             font-size: 12px;
@@ -297,6 +303,7 @@ function checkCategory(select) {
             border-radius: 50%;
             background-color: #00B5E2;
             color: #fff;
+            transition: background-color 0.3s ease;
             border: none;
             font-size: 16px;
             line-height: 24px;
