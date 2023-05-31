@@ -52,22 +52,7 @@
                                                 {% for item in all_item %}
                                                     <option value="{{ item.name }}" data-price="{{ item.price }}" data-category="{{ item.category }}">{{ item.name }}</option>
                                                 {% endfor %}
-                                            </select>
-                                            
-                                            <script>
-                                                function checkCategory(select) {
-                                                    var selectedOption = select.options[select.selectedIndex];
-                                                    var category = selectedOption.dataset.category;
-                                                    var productSizeSelect = document.getElementById('product-size');
-                                            
-                                                    if (category === 'cloth') {
-                                                        productSizeSelect.style.display = 'block';
-                                                    } else {
-                                                        productSizeSelect.style.display = 'none';
-                                                    }
-                                                }
-                                            </script>
-                                            
+                                            </select>                                                                            
                                             <select style="width:80px; display:none; margin-left: 10px;" name="size-category[]" class="form-control-select" id="product-size">
                                                 <option value="">사이즈</option>
                                                 <option value="{{ item.name }}-s">S</option>
@@ -127,78 +112,106 @@
     }
         // Function to add a new product input field
         function addProduct() {
-            var container = document.getElementById('product-container');
-            var newProduct = document.createElement('div');
-            newProduct.className = 'product-container';
+    var container = document.getElementById('product-container');
+    var newProduct = document.createElement('div');
+    newProduct.className = 'product-container';
 
-            var quantityContainer = document.createElement('div');
-            quantityContainer.className = 'quantity-container';
+    var quantityContainer = document.createElement('div');
+    quantityContainer.className = 'quantity-container';
 
-            var select = document.createElement('select');
-            select.style.width = '180px';
-            select.name = 'category[]';
-            select.className = 'form-control-select';
+    var select = document.createElement('select');
+    select.style.width = '180px';
+    select.name = 'category[]';
+    select.className = 'form-control-select';
+    select.onchange = function() {
+        checkCategory(this);
+    }
 
-            var option = document.createElement('option');
-            option.value = '';
-            option.textContent = '선택해주세요';
-            select.appendChild(option);
+    var option = document.createElement('option');
+    option.value = '';
+    option.textContent = '선택해주세요';
+    select.appendChild(option);
 
-            // Retrieve the existing product options
-            var existingOptions = document.querySelectorAll('#product option');
-            for (var i = 1; i < existingOptions.length; i++) {
-                var existingOption = existingOptions[i];
-                var clonedOption = document.createElement('option');
-                clonedOption.value = existingOption.value;
-                clonedOption.setAttribute('data-price', existingOption.getAttribute('data-price'));
-                clonedOption.textContent = existingOption.textContent;
-                select.appendChild(clonedOption);
-            }
+    // Retrieve the existing product options
+    var existingOptions = document.querySelectorAll('#product option');
+    for (var i = 1; i < existingOptions.length; i++) {
+        var existingOption = existingOptions[i];
+        var clonedOption = document.createElement('option');
+        clonedOption.value = existingOption.value;
+        clonedOption.setAttribute('data-price', existingOption.getAttribute('data-price'));
+        clonedOption.setAttribute('data-category', existingOption.getAttribute('data-category'));
+        clonedOption.textContent = existingOption.textContent;
+        select.appendChild(clonedOption);
+    }
+
+    var quantityControl = document.createElement('div');
+    quantityControl.className = 'quantity-control';
+    quantityControl.textContent = '개수:'
+
+    var minusBtn = document.createElement('button');
+    minusBtn.type = 'button';
+    minusBtn.className = 'quantity-btn';
+    minusBtn.textContent = '-';
+    minusBtn.setAttribute('onclick', 'adjustQuantity(this, -1)');
+
+    var input = document.createElement('input');
+    input.type = 'number';
+    input.name = 'quantity[]';
+    input.min = '1';
+    input.value = '1';
+    input.style.width = '60px';
+    input.style.textAlign = 'center';
+
+    var plusBtn = document.createElement('button');
+    plusBtn.type = 'button';
+    plusBtn.className = 'quantity-btn';
+    plusBtn.textContent = '+';
+    plusBtn.setAttribute('onclick', 'adjustQuantity(this, 1)');
+
+    var productSizeSelect = document.createElement('select');
+    productSizeSelect.style.width = '80px';
+    productSizeSelect.style.display = 'none';
+    productSizeSelect.name = 'size-category[]';
+    productSizeSelect.className = 'form-control-select';
+    productSizeSelect.style.marginLeft = '10px'
+    productSizeSelect.innerHTML = '<option value="">사이즈</option>' +
+        '<option value="{{ item.name }}-s">S</option>' +
+        '<option value="{{ item.name }}-m">M</option>' +
+        '<option value="{{ item.name }}-L">L</option>';
+
+    var removeBtn = document.createElement('span');
+    removeBtn.className = 'remove-product';
+    removeBtn.textContent = '삭제';
+    removeBtn.setAttribute('onclick', 'removeProduct(this)');
+
+    quantityControl.appendChild(minusBtn);
+    quantityControl.appendChild(input);
+    quantityControl.appendChild(plusBtn);
+
+    quantityContainer.appendChild(select);
+    quantityContainer.appendChild(productSizeSelect);
+    quantityContainer.appendChild(quantityControl);
+    quantityContainer.appendChild(removeBtn);
+
+    newProduct.appendChild(quantityContainer);
+
+    container.appendChild(newProduct);
+
+    updateTotalPrice();
+}
 
 
-            var quantityControl = document.createElement('div');
-            quantityControl.className = 'quantity-control';
+function checkCategory(select) {
+    var selectedOption = select.options[select.selectedIndex];
+    var category = selectedOption.getAttribute('data-category');
+    var productSizeSelect = select.parentNode.querySelector('select[name="size-category[]"]');
 
-            var minusBtn = document.createElement('button');
-            minusBtn.type = 'button';
-            minusBtn.className = 'quantity-btn';
-            minusBtn.textContent = '-';
-            minusBtn.setAttribute('onclick', 'adjustQuantity(this, -1)');
-
-            var input = document.createElement('input');
-            input.type = 'number';
-            input.name = 'quantity[]';
-            input.min = '1';
-            input.value = '1';
-            input.style.width = '60px';
-            input.style.textAlign = 'center';
-
-            var plusBtn = document.createElement('button');
-            plusBtn.type = 'button';
-            plusBtn.className = 'quantity-btn';
-            plusBtn.textContent = '+';
-            plusBtn.setAttribute('onclick', 'adjustQuantity(this, 1)');
-
-            var removeBtn = document.createElement('span');
-            removeBtn.className = 'remove-product';
-            removeBtn.textContent = '-';
-            removeBtn.setAttribute('onclick', 'removeProduct(this)');
-            
-            
-            quantityControl.appendChild(minusBtn);
-            quantityControl.appendChild(input);
-            quantityControl.appendChild(plusBtn);
-
-            quantityContainer.appendChild(select);
-            quantityContainer.appendChild(quantityControl);
-            quantityContainer.appendChild(removeBtn);
-
-            newProduct.appendChild(quantityContainer);
-
-            container.appendChild(newProduct);
-
-            updateTotalPrice();
-        }
+    if (category === 'cloth') {
+        productSizeSelect.style.display = 'block';
+    } else {
+        productSizeSelect.style.display = 'none';
+    }
+}
 
 
         // Function to remove the product input field
@@ -257,19 +270,41 @@
         }
 
         .quantity-btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #EF3340;
+            color: #fff;
             border: none;
-            background-color: #f5f5f5;
-            font-size: 14px;
+            font-size: 12px;
+            line-height: 24px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            margin: 6px;
+        }
+
+        .quantity-btn:hover {
+            background-color: #f27474;
         }
 
         .add-btn {
-            margin-left: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #00B5E2;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            line-height: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            margin: 6px;
+            font-weight: bolder;
+        }
+        .add-btn:hover {
+            background-color: #a8e8fd;
         }
 </style>
 
