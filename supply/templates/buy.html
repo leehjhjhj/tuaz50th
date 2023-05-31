@@ -71,13 +71,16 @@
                                     </div>
                                 </div>
                                 <button type="button" class="add-btn" onclick="addProduct()">+</button>
+                            <hr>
                             </div>
                             <div id="total-price-container">
-                                총 가격: <span id="total-price">0</span>
+                                <h3 style="color: black">
+                                총 가격: <span id="total-price">0</span>원
+                                </h3>
+                                주문은 계좌이체로 이루어지며, 최종 수량을 잘 확인 한 후 주문하기 버튼을 눌러주세요.
                             </div>
                             <br>
                             <button type="submit" name="draft" class="form-control-submit-button">주문하기</button>
-
                         </form>
                     </div> <!-- end of form container -->
                 </div> <!-- end of col -->
@@ -111,7 +114,8 @@
             totalPrice += price * quantity;
         });
 
-        document.getElementById('total-price').textContent = totalPrice;
+        var formattedTotalPrice = totalPrice.toLocaleString();
+        document.getElementById('total-price').textContent = formattedTotalPrice;
     }
         // Function to add a new product input field
         function addProduct() {
@@ -227,8 +231,8 @@ function checkCategory(select) {
     if (quantity === 1) {
         var totalPrice = price * quantity;
         document.getElementById('total-price').textContent = totalPrice;
-        updateTotalPrice();
     }
+    updateTotalPrice();
 }
         // Function to remove the product input field
         function removeProduct(element) {

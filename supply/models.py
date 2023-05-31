@@ -5,8 +5,6 @@ class Order(models.Model):
     STATUS_CHOICES = (
         ('waiting', '입금 대기'),
         ('completed', '입금 완료'),
-        ('shipping', '배송 중'),
-        ('delivered', '배송 완료'),
     )
     username = models.CharField(max_length=10)
     phone = models.IntegerField()
