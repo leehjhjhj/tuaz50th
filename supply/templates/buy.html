@@ -3,7 +3,7 @@
 {% load static %}
     
     <!-- Header -->
-    <body id="header" class="ex-2-header">
+    <header id="header" class="ex-2-header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -209,7 +209,7 @@
     </script>
 
 <style>
-    body {
+    header {
             background-image: url('{% static "images/ballon.jpg" %}');
             background-size: cover;
             background-position: center center;
@@ -229,7 +229,9 @@
             transition: all 0.2s;
             margin-left: 25%;
         }
-
+        .ex-2-header {
+            background-color: transparent;
+        }
         .form-control-submit-button:hover {
             background-color: transparent;
             color: #ff0000;
