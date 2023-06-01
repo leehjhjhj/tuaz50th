@@ -45,6 +45,12 @@ def create(request):
             new_order_item.quantity = quantity
             new_order_item.save()
 
-    # 추가적인 작업 수행
-        return redirect('home.html')
-    return redirect('home.html')
+        return redirect('supply:order_list')
+    return redirect('supply:order_list')
+
+def order_list(request):
+    orders = Order.objects.all()
+    context = {
+        'orders': orders
+        }
+    return render(request, 'order_list.html', context)

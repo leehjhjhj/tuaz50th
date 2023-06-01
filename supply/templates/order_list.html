@@ -1,0 +1,68 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<header id="header" class="ex-2-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <body>
+                    <h1 style="color: black;">Order List</h1>
+                    <table style="border: 1px solid black;">
+                        <thead>
+                          <tr>
+                            <th>주문 ID</th>
+                            <th>고객명</th>
+                            <th>전화번호</th>
+                            <th>이메일</th>
+                            <th>등급</th>
+                            <th>총 가격</th>
+                            <th>상태</th>
+                            <th>주문된 아이템</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for order in orders %}
+                          <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.name }}</td>
+                            <td>{{ order.phone }}</td>
+                            <td>{{ order.email }}</td>
+                            <td>{{ order.grade }}</td>
+                            <td>{{ order.all_price }}</td>
+                            <td>{{ order.get_status_display }}</td>
+                            <td>
+                              <ul>
+                                {% for item in order.order.all %}
+                                <li>
+                                  {{ item.item.name }} - {{ item.size }} - {{ item.quantity }}
+                                </li>
+                                {% endfor %}
+                              </ul>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                </body>
+                </div>
+            </div>
+        </div>
+    </header>
+<style>
+    .ex-2-header {
+            background-color: white;
+        }
+        table {
+    border-collapse: collapse;
+  }
+  th, td {
+    border-right: 1px solid black;
+  }
+  th:last-child, td:last-child {
+    border-right: 1px solid black;
+  }
+</style>
+
+
+{% endblock %}
+
