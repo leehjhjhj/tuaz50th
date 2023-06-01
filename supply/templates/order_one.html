@@ -10,32 +10,118 @@
             <div class="col-lg-12">
                 <h1 style="color: black;">주문 완료</h1>
                 <div class="form-container" style="max-width: 80rem;">
-                    <h2 style="color: black;">주문 정보</h2>
-                    <div class="order-info" style="color: black;">
-                        <p style="color: black;"><strong>주문 ID:</strong> {{ order.id }}</p>
-                        <p style="color: black;"><strong>고객명:</strong> {{ order.name }}</p>
-                        <p style="color: black;"><strong>전화번호:</strong> {{ order.phone }}</p>
-                        <p style="color: black;"><strong>이메일:</strong> {{ order.email }}</p>
-                        <p style="color: black;"><strong>학번:</strong> {{ order.grade }}</p>
-                        <p style="color: black;"><strong>총 가격:</strong> {{ order.all_price }}</p>
-                        <p style="color: black;"><strong>상태:</strong> {{ order.get_status_display }}</p>
-                        <hr>
-                        {% for item in order.order.all %}
-                                <li>
-                                  {{ item.item.name }} - {{ item.size }} - {{ item.quantity }}
-                                </li>
+                    <!-- <section class="title">
+                        <h1 style="color: black;">주문 상세</h1>
+                    </section> -->
+                    
+                    <main>
+                        <div class="detail_box">
+                            <div class="order_cont" style="padding-bottom: 5px;">
+                                <br>
+                                <div class="store_name">터키어과 50th MD SHOP</div>
+                                <br>
+                                
+                                <div class="order_info">
+                                    <div style="padding-bottom: 5px;">
+                                        주문일시 :
+                                        {{ order.created_at}}
+                                    </div>
+                                    <div style="padding-bottom: 5px;">주문상태:
+                                        {% if order.status == 'waiting' %}
+                                        입금 대기
+                                        {% else %}
+                                        입금 완료
+                                        {% endif %}
+                                    </div>
+                                    <div style="padding-bottom: 5px;">주문번호: {{ order.id }}</div>
+                                    <div style="padding-bottom: 5px;">주문자이름: {{ order.name }}</div>
+                                    <div style="padding-bottom: 5px;">전화번호: {{ order.phone }}</div>
+                                    <div style="padding-bottom: 5px;">이메일: {{ order.email }}</div>
+                                    <div style="padding-bottom: 5px;">학번: {{ order.grade }}</div>
+                                
+                                </div>
+                            </div>
+                            <hr>
+                            <ul class="order_menu">
+                                {% for item in order.order.all %}
+                                    <div class="menu_item">
+                                        <div class="thumbnail">
+                                            <img src="{{ item.item.thumbnail.url }}" alt="{{ item.item.name }} thumbnail">
+                                        </div>
+                                        <div class="menu_info">
+                                            <span>{{ item.item.name }}/</span>
+                                            <span>{{ item.quantity }}개/</span>
+                                            <span>사이즈: {{ item.size }}</span>
+                                        </div>
+                                        <ul>
+                                            <span class="menu_price_sum">{{ item.item.price }}원</span>
+                                        </ul>
+                                    </div>
+                                    <hr>
                                 {% endfor %}
-                    </div> <!-- end of order-info -->
+                            </ul>
+                    
+                            <div class="price">
+                                <div>
+                                    <span>총 주문금액</span>
+                                    <span>{{ order.all_price }}원</span>
+                                </div>
+                                <hr>
+                            </div>
+                    
+                            <div class="total">
+                                <div>
+                                    <span>결제방법</span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </main>
                 </div> <!-- end of form container -->
             </div> <!-- end of col -->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
-</header> <!-- end of ex-header -->
+ <!-- end of ex-header -->
 <!-- end of header -->
-
-
-  
+<svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 79">
+    <defs>
+      <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#00B5E2;stop-opacity:1" />
+        <stop offset="33.33%" style="stop-color:#00B5E2;stop-opacity:1" />
+        <stop offset="33.33%" style="stop-color:#EF3340;stop-opacity:1" />
+        <stop offset="66.66%" style="stop-color:#EF3340;stop-opacity:1" />
+        <stop offset="66.66%" style="stop-color:#509E2F;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#509E2F;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    <title>footer-frame</title>
+    <path class="cls-2" d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z" transform="translate(0 -0.188)" fill="url(#grad1)" />
+  </svg>
 <style>
+    .order_menu {
+        list-style: none;
+        padding: 0;
+    }
+
+    .menu_item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .thumbnail {
+        margin-right: 10px;
+    }
+
+    .menu_info {
+        flex: 1;
+    }
+
+    .menu_price_sum {
+        margin-top: auto;
+    }
+
     .ex-2-header {
             background-color: transparent;
         }
@@ -46,8 +132,118 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
-    .p {
-        color: black;
+        main {
+	width: 800px;
+	margin : 0 auto 50px ;
+} 
+ 
+.detail_box {
+	width: 95%;
+	margin-left: auto;
+}
+ 
+section.title {
+    width: 100%;
+}
+ 
+section.title h1 {
+    text-align: center;
+    margin : 30px 0 50px 0 ;
+}
+ 
+main .order_cont {
+	margin-bottom: 30px;
+}
+ 
+main div {
+    font-size: 1.5rem;
+}
+ 
+main .order_cont .store_name {
+	font-size: 2rem;
+	font-weight: bold;
+	
+}
+ 
+main .order_cont .order_info {
+	margin-top: 10px;
+	font-size: 1.5rem;
+	
+}
+ 
+main .order_menu  {
+    margin-bottom: 30px;
+}
+ 
+main .order_menu li {
+    position: relative;
+}
+ 
+main .order_menu li div,
+main .price div,
+main .total div {
+    display: flex;
+    justify-content: space-between;
+ 
+}
+ 
+main .order_menu li .menu_price,
+main .price div span:last-child,
+main .total div span:last-child {
+    position: relative;
+    right: 0;
+}
+ 
+main .order_menu li ul li {
+    font-size: 1.5rem;
+    list-style: disc;
+    margin-left: 20px;
+    color: #a5a5a5;
+}
+ 
+main .order_menu li ul li.menu_price_sum {
+	list-style: none;
+	margin: 0;
+	color: black;
+	font-weight: bold;
+	
+}
+ 
+main .price {
+    margin-bottom: 30px;
+}
+ 
+ 
+main .price div {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+ 
+main .total{
+    margin-bottom: 30px;
+}
+ 
+main .total div {
+	font-size: 2rem;
+	font-weight: bold;
+}
+.thumbnail img {
+        width: 100px; /* Adjust the width as needed */
+        height: auto; /* Maintain the aspect ratio */
     }
+ 
+ 
+@media (max-width:1024px) {
+	main {
+		width: 95%;
+	}
+	.detail_box {
+		margin: 0 auto;
+		
+	}
+}
+@media  (max-width:767px) {
+	
+}
 </style>
 {% endblock %}

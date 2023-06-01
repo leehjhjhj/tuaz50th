@@ -13,6 +13,7 @@ class Order(models.Model):
     grade = models.IntegerField()
     all_price = models.IntegerField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
 
 class OrderItems(models.Model):
     order = models.ForeignKey(Order,related_name='order', on_delete=models.CASCADE)
