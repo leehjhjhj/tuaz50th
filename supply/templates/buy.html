@@ -11,27 +11,27 @@
                     <p>꼼꼼히 읽고 작성해주세요!</p> 
                     <!-- apply Form -->
                     <div class="form-container" style="max-width: 80rem;">
-                        <form method="POST" action="{% url 'supply:create' %}">
+                        <form method="POST" action="{% url 'supply:create' %}" id="order-form">
                             {%csrf_token%}
                             <br>
                             <div class="form-group">
                                 1. 이름를 작성해주세요
-                                <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="name" style="width: 200px;">
+                                <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="name" style="width: 200px;" required>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
                             <div class="form-group">
                                 2. 핸드폰 번호를 작성해주세요 ('-' 없이 8자리)
-                                <input class="form-control" type="text" placeholder="010xxxxxxxx" aria-label=".form-control-lg example" name="phone">
+                                <input class="form-control" type="text" placeholder="010xxxxxxxx" aria-label=".form-control-lg example" name="phone" required>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
                             <div class="form-group">
                                 3. 이메일을 적어주세요
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="example" name="email_id">
+                                    <input type="text" class="form-control" placeholder="example" name="email_id" required>
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" placeholder="example.com" name="email_server">
+                                    <input type="text" class="form-control" placeholder="example.com" name="email_server" required>
                                 </div>
                                 <div class="help-block with-errors"></div>
                                 
@@ -39,7 +39,7 @@
                             <br>
                             <div class="form-group">
                                 4. 학번을 입력해주세요(example: 19)
-                                <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="grade" style="width:180px;" >
+                                <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="grade" style="width:180px;" required>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
@@ -48,7 +48,7 @@
                                 <div id="product-container">
                                     <div class="product-container">
                                         <div class="quantity-container">
-                                            <select style="width:180px;" name="category[]" class="form-control-select" id="product" onchange="checkCategory(this)">
+                                            <select style="width:180px;" name="category[]" class="form-control-select" id="product" onchange="checkCategory(this)" required>
                                                 <option value="" data-price="0" disabled selected style="display:none;">선택해주세요</option>
                                                 {% for item in all_item %}
                                                     <option value="{{ item.name }}" data-price="{{ item.price }}" data-category="{{ item.category }}" data-item_id="{{ item.id }}">{{ item.name }}</option>
@@ -56,7 +56,6 @@
                                             </select> 
                                             <input type="hidden" name="item_id[]" id="item-id-input">                                                                      
                                             <select style="width:60px; display:none; margin-left: 10px;" name="size-category[]" class="form-control-select" id="product-size">
-
                                                 <option value="s">S</option>
                                                 <option value="m">M</option>
                                                 <option value="l">L</option>
@@ -83,7 +82,7 @@
                                 주문은 계좌이체로 이루어지며, 최종 수량을 잘 확인 한 후 주문하기 버튼을 눌러주세요.
                             </div>
                             <br>
-                            <button type="submit" name="draft" class="form-control-submit-button">주문하기</button>
+                            <button type="submit" name="draft" class="form-control-submit-button" id="submit-btn">주문하기</button>
                         </form>
                     </div> <!-- end of form container -->
                 </div> <!-- end of col -->
@@ -248,35 +247,20 @@ function checkCategory(select) {
         container.removeChild(element.parentNode.parentNode);
         updateTotalPrice();
     }
-    // function getSelectedProducts() {
-    //     var productElements = document.getElementsByName("category[]");
-    //     var sizeElements = document.getElementsByName("size-category[]");
-    //     var quantityElements = document.getElementsByName("quantity[]");
-    //     var selectedProducts = [];
-
-    //     for (var i = 0; i < productElements.length; i++) {
-    //         var product = productElements[i].value;
-    //         var size = sizeElements[i].value;
-    //         var quantity = quantityElements[i].value;
-    //         var itemId = productElements[i].getAttribute("data-item_id");
-
-    //         if (product && quantity) {
-    //         selectedProducts.push({
-    //             product: product,
-    //             size: size,
-    //             quantity: quantity,
-    //             item_id: itemId,
-    //             total_price: totalPriceInput,
-    //         });
-    //         }
-    //     }
-       
-
-    //     return selectedProducts;
-    //     }
 
     </script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+         $('#submit-btn').on('click', function(event) {
+            var form = $("#order-form")
 
+            if (form[0].checkValidity() === false) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+            form.addClass('was-validated')
+        })
+    </script>
 <style>
     header {
             background-image: url('{% static "images/ballon.jpg" %}');

@@ -28,8 +28,7 @@ def create(request):
         product_names = request.POST.getlist('category[]')
         sizes = request.POST.getlist('size-category[]')
         quantities = request.POST.getlist('quantity[]')
-
-        print(product_names, sizes, quantities)
+        
         for i in range(len(product_names)):
             product_name = product_names[i]
             size = sizes[i]
