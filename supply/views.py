@@ -22,6 +22,8 @@ def create(request):
         new_order.grade = request.POST['grade']
         new_order.all_price = request.POST['total-price-input']
         new_order.status = 'waiting'
+
+        new_order.number_name = request.POST['grade'] + " " + request.POST['name']
         new_order.save()
 
 

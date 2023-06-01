@@ -6,6 +6,7 @@ class Order(models.Model):
         ('waiting', '입금 대기'),
         ('completed', '입금 완료'),
     )
+    number_name = models.CharField(max_length=10, default="임시")
     name = models.CharField(max_length=10)
     phone = models.CharField(max_length=11)
     email = models.EmailField(max_length=50)
