@@ -18,7 +18,7 @@
                         <div class="detail_box">
                             <div class="order_cont" style="padding-bottom: 5px;">
                                 <br>
-                                <div class="store_name">터키어과 50th MD SHOP</div>
+                                <div class="store_name">주문번호: {{ order.id }}</div>
                                 <br>
                                 
                                 <div class="order_info">
@@ -48,7 +48,7 @@
                                         <div class="thumbnail">
                                             <img src="{{ item.item.thumbnail.url }}" alt="{{ item.item.name }} thumbnail">
                                         </div>
-                                        <div class="menu_info">
+                                        <div class="menu_info" style="font-size: 1.0rem;">
                                             <span>{{ item.item.name }}/</span>
                                             <span>{{ item.quantity }}개/</span>
                                             <span>사이즈: {{ item.size }}</span>
@@ -156,7 +156,7 @@ main .order_cont {
 }
  
 main div {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
  
 main .order_cont .store_name {
@@ -167,7 +167,6 @@ main .order_cont .store_name {
  
 main .order_cont .order_info {
 	margin-top: 10px;
-	font-size: 1.5rem;
 	
 }
  
@@ -195,7 +194,7 @@ main .total div span:last-child {
 }
  
 main .order_menu li ul li {
-    font-size: 1.5rem;
+    
     list-style: disc;
     margin-left: 20px;
     color: #a5a5a5;
@@ -215,8 +214,8 @@ main .price {
  
  
 main .price div {
-    font-size: 1.8rem;
     font-weight: bold;
+    font-size: 1.4rem;
 }
  
 main .total{
@@ -231,8 +230,7 @@ main .total div {
         width: 100px; /* Adjust the width as needed */
         height: auto; /* Maintain the aspect ratio */
     }
- 
- 
+
 @media (max-width:1024px) {
 	main {
 		width: 95%;
