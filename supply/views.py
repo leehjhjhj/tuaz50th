@@ -8,7 +8,7 @@ def buy(request):
         'all_item': all_item,
     }
     return render(request, 'buy.html', context)
-
+@csrf_exempt
 def create(request):
     if request.method == 'POST':   # 지원폼 작성 후 저장
         new_order = Order()
