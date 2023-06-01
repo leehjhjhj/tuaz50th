@@ -7,7 +7,7 @@ class Order(models.Model):
         ('completed', '입금 완료'),
     )
     name = models.CharField(max_length=10)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=11)
     email = models.EmailField(max_length=50)
     grade = models.IntegerField()
     all_price = models.IntegerField()

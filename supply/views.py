@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from item.models import *
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
@@ -44,7 +44,10 @@ def create(request):
             new_order_item.quantity = quantity
             new_order_item.save()
 
-        return redirect('supply:order_list')
+        context = {
+            'order': new_order
+        }
+        return render(request, 'order_one.html', context)
     return redirect('supply:order_list')
 
 def order_list(request):
@@ -53,3 +56,25 @@ def order_list(request):
         'orders': orders
         }
     return render(request, 'order_list.html', context)
+
+@csrf_exempt
+def find_order(request):
+    if request.method == 'GET':
+        return render(request, 'find_order_input.html')
+
+    elif request.method == 'POST':
+        phone = request.POST['phone']
+        orders = Order.objects.filter(phone=phone)
+        context = {
+            'orders': orders
+            }
+        return render(request, 'find_order.html', context)
+
+@csrf_exempt
+def cancel_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    if request.method == 'POST':
+        # Perform cancel order logic here
+        order.delete()
+        return render(request, 'order_cancel.html')  # Replace 'home' with the appropriate URL name
+    return redirect('order_one', order_id=order_id)
