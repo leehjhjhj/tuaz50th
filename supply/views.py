@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from item.models import *
+from .models import *
 
 def buy(request):
     all_item = Item.objects.all()
@@ -8,3 +9,42 @@ def buy(request):
     }
     return render(request, 'buy.html', context)
 
+def create(request):
+    if request.method == 'POST':   # 지원폼 작성 후 저장
+        new_order = Order()
+        new_order.name = request.POST['name']   # user name
+        new_order.phone = request.POST['phone']   # category
+        email_id = request.POST['email_id']   # 깃헙 / 블로그 주소
+        email_server = request.POST['email_server']
+        new_order.email = email_id + '@' + email_server
+        new_order.grade = request.POST['grade']
+        new_order.all_price = request.POST['total-price-input']
+        new_order.status = 'waiting'
+        new_order.save()
+
+
+        product_names = request.POST.getlist('category[]')
+        sizes = request.POST.getlist('size-category[]')
+        quantities = request.POST.getlist('quantity[]')
+
+        print(product_names, sizes, quantities)
+        # 선택된 상품 정보를 처리
+        for i in range(len(product_names)):
+            product_name = product_names[i]
+            size = sizes[i]
+            quantity = quantities[i]
+            
+            # OrderItems 생성 및 저장
+            new_order_item = OrderItems()
+            new_order_item.order = new_order
+            new_order_item.item = Item.objects.get(name=product_name)
+            if not new_order_item.item.category == 'cloth':
+                new_order_item.size = '없음'
+            else:
+                new_order_item.size = size
+            new_order_item.quantity = quantity
+            new_order_item.save()
+
+    # 추가적인 작업 수행
+        return redirect('home.html')
+    return redirect('home.html')

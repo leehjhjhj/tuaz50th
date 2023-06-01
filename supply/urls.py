@@ -6,4 +6,5 @@ app_name = 'supply'
 
 urlpatterns = [
     path('', buy, name='buy'),
+    path('create/', create, name='create')
 ]
