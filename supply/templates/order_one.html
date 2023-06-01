@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-    
+{% load humanize %}
     <!-- Header -->
     <!-- Header -->
 <header id="header" class="ex-2-header">
@@ -49,20 +49,20 @@
                                             <img src="{{ item.item.thumbnail.url }}" alt="{{ item.item.name }} thumbnail">
                                         </div>
                                         <div class="menu_info" style="font-size: 1.0rem;">
-                                            <span>{{ item.item.name }}/</span>
+                                            <span>{{ item.item.name }}</span>
                                             <span>{{ item.quantity }}개</span>
                                             <span> 
                                                 {% if item.size == 's' %}
                                                 / 사이즈: S
                                                 {% elif item.size == 'm' %}
                                                 / 사이즈: M
-                                                {% elif item.size == 'L' %}
+                                                {% elif item.size == 'l' %}
                                                 / 사이즈: L
                                                 {% endif %}
                                             </span>
                                         </div>
                                         <ul>
-                                            <span class="menu_price_sum">{{ item.item.price }}원</span>
+                                            <span class="menu_price_sum">{{ item.item.price|intcomma }}원</span>
                                         </ul>
                                     </div>
                                     <hr>
@@ -72,7 +72,7 @@
                             <div class="price">
                                 <div>
                                     <span>총 주문금액</span>
-                                    <span>{{ order.all_price }}원</span>
+                                    <span>{{ order.all_price|intcomma }}원</span>
                                 </div>
                                 <hr>
                             </div>
@@ -80,8 +80,8 @@
                             <div class="total">
                                 <div>
                                     <span>결제방법</span>
-                                    <span></span>
                                 </div>
+                                <br/>계좌이체로 진행됩니다.
                             </div>
                             <hr>
                         </div>

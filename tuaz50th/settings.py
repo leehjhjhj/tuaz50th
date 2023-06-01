@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'supply',
     'guestbook',
     'item',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
