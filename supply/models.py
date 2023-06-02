@@ -5,6 +5,7 @@ class Order(models.Model):
     STATUS_CHOICES = (
         ('waiting', '입금 대기'),
         ('completed', '입금 완료'),
+        ('canceled', '취소 완료'),
     )
     number_name = models.CharField(max_length=10, default="임시")
     name = models.CharField(max_length=10)
