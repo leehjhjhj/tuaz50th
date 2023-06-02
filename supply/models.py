@@ -17,14 +17,23 @@ class Order(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
+    def __str__(self):
+        return f"주문번호:{self.id} | {self.number_name} | {self.get_status_display()}"
+    
 class OrderItems(models.Model):
     order = models.ForeignKey(Order,related_name='order', on_delete=models.CASCADE)
     item = models.ForeignKey(Item, related_name='item', on_delete=models.CASCADE)
     quantity = models.IntegerField()
     size = models.CharField(max_length=10, null=True)
 
+    def __str__(self):
+        return f"{self.order.number_name} | 주문번호:{self.order.id} | {self.item.name} | {self.quantity}"
+
 class Cancel(models.Model):
     order = models.ForeignKey(Order,related_name='cancel_order', on_delete=models.CASCADE)
     bank = models.CharField(max_length=10)
     account = models.CharField(max_length=32)
     account_holder = models.CharField(max_length=10)
+
+    def __str__(self):
+        return f"{self.order.number_name} | 주문번호: {self.order.id} | {self.order.get_status_display()}"
