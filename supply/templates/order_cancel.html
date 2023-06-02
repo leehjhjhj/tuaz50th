@@ -10,15 +10,33 @@
             <div class="col-lg-12">
                 <div class="form-container" style="max-width: 80rem;">
                     <div class="order-info" style="color: black;">
-                        <h1 style="color: black;">주문이 취소되었습니다.</h2>
+                        <h1 style="color: black;">주문 취소</h1>
+                        <div id="cancel-form-container">
+                            <form method="POST" action="{% url 'supply:cancel_order' order.id %}" id="account-form">
+                                <div class="form-group">
+                                    은행 이름을 적어주세요. (예: 국민은행, 우리은행)
+                                    <input class="form-control" type="text" placeholder="OO은행" aria-label=".form-control-lg example" name="bank" style="width: 200px;" required>
+                                </div>
+                                <div class="form-group">
+                                    계좌번호를 적어주세요. ('-' 제외)
+                                    <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="account" required>
+                                </div>
+                                <div class="form-group">
+                                    예금주명을 입력하세요
+                                    <input class="form-control" type="text" placeholder="이OO" aria-label=".form-control-lg example" name="account_holder" style="width: 200px;" required>
+                                </div>
+                                <button type="submit" name="draft" class="form-control-submit-button" id="submit-btn">주문취소하기</button>
+                            </form>
+                        </div>
                     </div> <!-- end of order-info -->
+                </div>
+            </div>
                 </div> <!-- end of form container -->
             </div> <!-- end of col -->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
 </header> <!-- end of ex-header -->
 <!-- end of header -->
-
 <style>
     .ex-2-header {
             background-color: transparent;
@@ -33,5 +51,22 @@
     .p {
         color: black;
     }
+    .form-control-submit-button {
+            display: inline-block;
+            width: 50%;
+            height: 3.125rem;
+            border: 1px solid #ff0000;
+            border-radius: 1.5rem;
+            background-color: #ff0000;
+            color: #fff;
+            font: 700 0.875rem/0 "Open Sans", sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 25%;
+        }
+        .form-control-submit-button:hover {
+            background-color: transparent;
+            color: #ff0000;
+        }
 </style>
 {% endblock %}

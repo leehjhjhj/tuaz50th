@@ -75,8 +75,41 @@ def find_order(request):
 @csrf_exempt
 def cancel_order(request, order_id):
     order = get_object_or_404(Order, id=order_id)
+    if request.method == 'GET':
+        context = {
+            'order': order
+        }
+        return render(request, 'order_cancel.html', context)
+    elif request.method == 'POST':
+
+        new_cancel = Cancel()
+        new_cancel.order = order
+        new_cancel.account = request.POST['account']
+        new_cancel.bank = request.POST['bank']
+        new_cancel.account_holder = request.POST['account_holder']
+        new_cancel.save()
+
+        order.status = 'cancel_wait'
+        order.save()
+        return render(request, 'order_cancel_complete.html') 
+
+@csrf_exempt
+def delete_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
     if request.method == 'POST':
-        # Perform cancel order logic here
         order.delete()
-        return render(request, 'order_cancel.html')  # Replace 'home' with the appropriate URL name
-    return redirect('order_one', order_id=order_id)
+    return render(request, 'order_cancel_complete.html')  
+
+@csrf_exempt
+def is_money_order(request, order_id):
+    context = {'order_id': order_id}
+    if request.method == 'GET':
+        return render(request, 'order_cancel_isMoney.html', context)
+    elif request.method == 'POST':
+        if request.POST['is_money'] == 'yes':
+            return redirect('supply:cancel_order', order_id=order_id)
+        else:
+            order = get_object_or_404(Order, id=order_id)
+            order.status = 'canceled'
+            order.save()
+    return render(request, 'order_cancel_complete.html') 

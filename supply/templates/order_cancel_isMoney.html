@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+    
+    <!-- Header -->
+    <!-- Header -->
+    <header id="header" class="ex-2-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-container" style="max-width: 80rem;">
+                        <div class="order-info" style="color: black;">
+                            <h1 style="color: black;">주문 취소</h1>
+                            <div id="cancel-form-container">
+                                <div>
+                                    현재 입금 상태는 '입금 대기'이지만, 계좌 이체를 진행 했을 경우 '예' 버튼을 눌러주세요.<br>
+                                    계좌 이체를 했음에도 불구하고 '아니오'를 누를 시, 즉시 '취소 완료'가 되어서 환불 진행에 차질이 생깁니다.
+                                </div>
+                                <div class="button-container">
+                                    <form method="POST" action="{% url 'supply:is_money_order' order_id %}" id="yesno-form" style="display: flex; justify-content: center;">
+                                        <button type="submit" name="is_money" value="yes" class="form-control-submit-button-yes" id="submit-btn-yes" style="width: 200px;">예</button>
+                                        <button type="submit" name="is_money" value="no" class="form-control-submit-button-no" id="submit-btn-no" style="width: 200px; margin-left: 10px;">아니오</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> <!-- end of order-info -->
+                    </div> <!-- end of form container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </header>
+    
+    
+<!-- end of header -->
+<style>
+    .ex-2-header {
+            background-color: transparent;
+        }
+        header {
+            background-image: url('{% static "images/ballon.jpg" %}');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    .p {
+        color: black;
+    }
+    .form-control-submit-button-yes {
+            display: inline-block;
+        
+            height: 3.125rem;
+            border: 1px solid #00B5E2;
+            border-radius: 1.5rem;
+            background-color: #00B5E2;
+            color: #fff;
+            font: 700 0.875rem/0 "Open Sans", sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            
+        }
+        .form-control-submit-button-yes:hover {
+            background-color: transparent;
+            color: #00B5E2;
+        }
+        .form-control-submit-button-no {
+            display: inline-block;
+            height: 3.125rem;
+            border: 1px solid #509E2F;
+            border-radius: 1.5rem;
+            background-color: #509E2F;
+            color: #fff;
+            font: 700 0.875rem/0 "Open Sans", sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            
+        }
+        .form-control-submit-button-no:hover {
+            background-color: transparent;
+            color: #a1d78a;
+        }
+        .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}
