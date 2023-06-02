@@ -13,7 +13,7 @@
                         <div class="detail_box">
                             {% for order in orders %}
                             <hr style="border: 0; height: 3px; background: black;">
-                            <div class="order_cont" style="padding-bottom: 5px;">
+                            <div class="order_cont">
                                 <br>
                                 <div class="store_name">주문번호: {{ order.id }}</div>
                                 <br>
@@ -22,7 +22,7 @@
                                         주문일시 :
                                         {{ order.created_at}}
                                     </div>
-                                    <div style="padding-bottom: 5px;">주문상태:
+                                    <div style="padding-bottom: 5px;" style="font-weight: bolder;">입금 상태:
                                         {% if order.status == 'waiting' %}
                                         입금 대기
                                         {% else %}
@@ -71,10 +71,14 @@
                                 </div>
                                 <hr>
                             </div>
+                            {% if not order.status == 'completed' %}
                             <form method="post" action="{% url 'supply:cancel_order' order.id %}">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger">주문 취소</button>
                             </form>
+                            {% else %}
+                            입금이 완료된 이후에는 "contact us"를 통해서만 취소가 가능합니다.
+                            {% endif %}
                         {% endfor %}   
                         </div>
                         
