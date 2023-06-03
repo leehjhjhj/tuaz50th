@@ -37,3 +37,6 @@ class Cancel(models.Model):
 
     def __str__(self):
         return f"{self.order.number_name} | 주문번호: {self.order.id} | {self.order.get_status_display()}"
+
+
+
