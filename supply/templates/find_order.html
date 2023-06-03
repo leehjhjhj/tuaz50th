@@ -22,19 +22,20 @@
                                         주문일시 :
                                         {{ order.created_at}}
                                     </div>
-                                    <div style="padding-bottom: 5px;" style="font-weight: bolder;">입금 상태:
+                                    <div style="padding-bottom: 5px; font-weight: bolder;">입금상태:
                                         {% if order.status == 'waiting' %}
                                         입금 대기
                                         {% elif order.status == 'completed' %}
                                         입금 완료
+                                        {% elif order.status == 'cancel_wait' %}
+                                        취소 대기
                                         {% else %}
                                         취소 완료
                                         {% endif %}
                                     </div>
-                                    <div style="padding-bottom: 5px;">주문자이름: {{ order.name }}</div>
+                                    <div style="padding-bottom: 5px;">학번이름: {{ order.number_name }}</div>
                                     <div style="padding-bottom: 5px;">전화번호: {{ order.phone }}</div>
                                     <div style="padding-bottom: 5px;">이메일: {{ order.email }}</div>
-                                    <div style="padding-bottom: 5px;">학번: {{ order.grade }}</div>
                                 
                                 </div>
                             </div>
