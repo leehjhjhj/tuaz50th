@@ -13,6 +13,7 @@
                         <h1 style="color: black;">주문 취소</h1>
                         환불 정보를 적어주세요! 예금주 명은 입금 했을 때와 같아야 합니다.
                         <hr>
+                        <h3 style="color: black;">환불 정보 입력</h3>
                         <div id="cancel-form-container" style="margin-top: 15px;">
                             <form method="POST" action="{% url 'supply:cancel_order' order.id %}" id="account-form">
                                 {% csrf_token %}
