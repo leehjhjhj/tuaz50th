@@ -11,8 +11,11 @@
                 <div class="form-container" style="max-width: 80rem;">
                     <div class="order-info" style="color: black;">
                         <h1 style="color: black;">주문 취소</h1>
-                        <div id="cancel-form-container">
+                        환불 정보를 적어주세요! 예금주 명은 입금 했을 때와 같아야 합니다.
+                        <hr>
+                        <div id="cancel-form-container" style="margin-top: 15px;">
                             <form method="POST" action="{% url 'supply:cancel_order' order.id %}" id="account-form">
+                                {% csrf_token %}
                                 <div class="form-group">
                                     은행 이름을 적어주세요. (예: 국민은행, 우리은행)
                                     <input class="form-control" type="text" placeholder="OO은행" aria-label=".form-control-lg example" name="bank" style="width: 200px;" required>

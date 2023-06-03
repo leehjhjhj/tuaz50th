@@ -10,7 +10,7 @@ def buy(request):
     }
     return render(request, 'buy.html', context)
 
-@csrf_exempt
+
 def create(request):
     if request.method == 'POST':  
         new_order = Order()
@@ -59,7 +59,7 @@ def order_list(request):
         }
     return render(request, 'order_list.html', context)
 
-@csrf_exempt
+
 def find_order(request):
     if request.method == 'GET':
         return render(request, 'find_order_input.html')
@@ -72,7 +72,7 @@ def find_order(request):
             }
         return render(request, 'find_order.html', context)
 
-@csrf_exempt
+
 def cancel_order(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     if request.method == 'GET':
@@ -93,14 +93,13 @@ def cancel_order(request, order_id):
         order.save()
         return render(request, 'order_cancel_complete.html') 
 
-@csrf_exempt
 def delete_order(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     if request.method == 'POST':
         order.delete()
     return render(request, 'order_cancel_complete.html')  
 
-@csrf_exempt
+
 def is_money_order(request, order_id):
     context = {'order_id': order_id}
     if request.method == 'GET':

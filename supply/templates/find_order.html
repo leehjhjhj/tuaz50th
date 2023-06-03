@@ -73,8 +73,13 @@
                                 </div>
                                 <hr>
                             </div>
-                            {% if order.status == 'waiting' or order.status == 'completed' %}
+                            {% if order.status == 'waiting' %}
                             <form method="get" action="{% url 'supply:is_money_order' order.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">주문 취소</button>
+                            </form>
+                            {% elif order.status == 'completed' %}
+                            <form method="get" action="{% url 'supply:cancel_order' order.id %}">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger">주문 취소</button>
                             </form>

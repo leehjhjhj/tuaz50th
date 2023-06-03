@@ -18,8 +18,9 @@
                                 </div>
                                 <div class="button-container">
                                     <form method="POST" action="{% url 'supply:is_money_order' order_id %}" id="yesno-form" style="display: flex; justify-content: center;">
-                                        <button type="submit" name="is_money" value="yes" class="form-control-submit-button-yes" id="submit-btn-yes" style="width: 200px;">예</button>
-                                        <button type="submit" name="is_money" value="no" class="form-control-submit-button-no" id="submit-btn-no" style="width: 200px; margin-left: 10px;">아니오</button>
+                                        {% csrf_token %}
+                                        <button type="submit" name="is_money" value="yes" class="form-control-submit-button-yes" id="submit-btn-yes" style="width: 150px;">예</button>
+                                        <button type="submit" name="is_money" value="no" class="form-control-submit-button-no" id="submit-btn-no" style="width: 150px; margin-left: 10px;">아니오</button>
                                     </form>
                                 </div>
                             </div>
@@ -84,5 +85,17 @@
         justify-content: center;
         margin-top: 20px;
     }
+    @media (min-width: 768px) {
+        .form-control-submit-button-yes,
+        .form-control-submit-button-no {
+            width: 100px;
+        }    
+    }
+    @media (min-width: 300px) {
+    .form-control-submit-button-yes,
+    .form-control-submit-button-no{
+        width: 100px;
+    }
+  }
 </style>
 {% endblock %}

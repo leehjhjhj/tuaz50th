@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .forms import BalloonForm
 from django.views.decorators.csrf import csrf_exempt
 
-@csrf_exempt
+
 def balloon_list(request):
     if request.method == 'POST':
         form = BalloonForm(request.POST)
