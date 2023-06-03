@@ -18,8 +18,8 @@ class OrderItemsInline(admin.TabularInline):
     get_item_price.short_description = 'Item Price'
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'number_name', 'status']
-    list_display_links = ['id', 'number_name', 'status']
+    list_display = ['id', 'number_name', 'phone', 'status']
+    list_display_links = ['id', 'number_name', 'phone', 'status']
     readonly_fields = ('id', 'number_name', 'name', 'phone', 'email', 'grade', 'all_price')
     search_fields = ("phone", "number_name")
     list_filter = ['status']
@@ -31,7 +31,7 @@ admin.site.register(Order, OrderAdmin)
 #################################################################################
 
 class OrderItemsAdmin(admin.ModelAdmin):
-    list_display = ['order', 'item', 'quantity',]
+    list_display = ['order', 'item', 'quantity','size']
     list_display_links = ['order', 'item']
     list_filter = ['item']
     readonly_fields = ('id', 'order', 'item', 'quantity', 'size',)
