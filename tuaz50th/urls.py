@@ -14,5 +14,6 @@ urlpatterns = [
     path('item/', include('item.urls')),
     path('buy/', include('supply.urls')),
     path('about/', about, name='about'),
+    path('blockgame/', blockgame, name='blockgame'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

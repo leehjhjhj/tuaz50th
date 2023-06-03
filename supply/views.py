@@ -112,3 +112,26 @@ def is_money_order(request, order_id):
             order.status = 'canceled'
             order.save()
     return render(request, 'order_cancel_complete.html') 
+
+def change_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+
+    if request.method == 'GET':
+        context ={
+            'order': order
+        }
+        return render(request, 'order_change.html', context)
+    
+    elif request.method == 'POST':
+        new_grade = request.POST['new_grade']
+        new_name = request.POST['new_name']
+
+        order.number_name = new_grade + ' ' + new_name
+        order.grade = new_grade
+        order.name = new_name
+        
+        order.phone = request.POST['new_phone']
+        order.email = request.POST['new_email']
+        order.save()
+    
+        return render(request, 'order_cancel_complete.html')

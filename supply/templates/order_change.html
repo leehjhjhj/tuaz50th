@@ -6,39 +6,22 @@
     <!-- Header -->
 <header id="header" class="ex-2-header">
     <div class="container">
-        <div class="row">
+        <div class="row" >
             <div class="col-lg-12">
+                <h1 style="color: black;">주문 정보 변경</h1>
                 <div class="form-container" style="max-width: 80rem;">
+                    <!-- <section class="title">
+                        <h1 style="color: black;">주문 상세</h1>
+                    </section> -->
+                    
                     <main>
                         <div class="detail_box">
-                            {% for order in orders %}
-                            <hr style="border: 0; height: 3px; background: black;">
-                            <div class="order_cont">
+                            <div class="order_cont" style="padding-bottom: 5px;">
                                 <br>
                                 <div class="store_name">주문번호: {{ order.id }}</div>
                                 <br>
-                                <div class="order_info">
-                                    <div style="padding-bottom: 5px;">
-                                        주문일시 :
-                                        {{ order.created_at}}
-                                    </div>
-                                    <div style="padding-bottom: 5px; font-weight: bolder;">입금상태:
-                                        {% if order.status == 'waiting' %}
-                                        입금 대기
-                                        {% elif order.status == 'completed' %}
-                                        입금 완료
-                                        {% elif order.status == 'cancel_wait' %}
-                                        취소 대기
-                                        {% else %}
-                                        취소 완료
-                                        {% endif %}
-                                    </div>
-                                    <div style="padding-bottom: 5px;">학번이름: {{ order.number_name }}</div>
-                                    <div style="padding-bottom: 5px;">전화번호: {{ order.phone }}</div>
-                                    <div style="padding-bottom: 5px;">이메일: {{ order.email }}</div>
                                 
-                                </div>
-                            </div>
+                            <h3 style="color: rgba(0, 0, 0, 0.691);"> 구매 내역 </h3>
                             <hr>
                             <ul class="order_menu">
                                 {% for item in order.order.all %}
@@ -74,45 +57,52 @@
                                 </div>
                                 <hr>
                             </div>
-                            {% if order.status == 'waiting' %}
-                            <div class="button-container">
-                                <form method="get" action="{% url 'supply:is_money_order' order.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger">주문 취소</button>
-                                </form>
-                                <form method="get" action="{% url 'supply:change_order' order.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-success" style="margin-left: 10px;">주문 변경</button>
-                                </form>
+                                <div class="order_info">
+                                    <div style="padding-bottom: 5px;">
+                                        주문일시 :
+                                        {{ order.created_at}}
+                                    </div>
+                                    <div style="padding-bottom: 5px;">주문상태:
+                                        {% if order.status == 'waiting' %}
+                                        입금 대기
+                                        {% else %}
+                                        입금 완료
+                                        {% endif %}
+                                    </div>
+                                    <br>
+                                    <form method="POST" action="{% url 'supply:change_order' order.id %}" id="change_order">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            변경하실 학번을 입력해주세요. (example: 18)
+                                            <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="new_grade" style="width:180px;" required maxlength="2" value="{{ order.grade }}">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    <div class="form-group">
+                                        변경하실 이름를 작성해주세요.
+                                        <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="new_name" style="width: 200px;" value="{{ order.name }}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        변경하실 핸드폰 번호를 작성해주세요 ('-' 없이 8자리)
+                                        <input class="form-control" type="text" aria-label=".form-control-lg example" name="new_phone" required maxlength="11" value="{{ order.phone }}">
+                                    </div>
+                                    <div class="form-group">
+                                        변경하실 이메일을 적어주세요
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="new_email" value="{{ order.email }}" required>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <br>
+                                    <button type="submit" name="draft" class="form-control-submit-button" id="submit-btn">변경완료</button>
+                                    </form>
+                                </div>
                             </div>
-                            {% elif order.status == 'completed' %}
-                            <div class="button-container">
-                                <form method="get" action="{% url 'supply:cancel_order' order.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger">주문 취소</button>
-                                </form>
-                                <form method="get" action="{% url 'supply:change_order' order.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-success" style="margin-left: 10px;">주문 변경</button>
-                                </form>
-                            </div>
-                            {% elif order.status == 'cancel_wait' %}
-                            취소 절차가 진행 중입니다.
-                            {% else %}
-                            취소된 주문입니다.<br/>
-                            <form method="post" action="{% url 'supply:delete_order' order.id %}" style="padding-top: 10px;">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-secondary">내역 삭제</button>
-                            </form>
-                            {% endif %}
-                        {% endfor %}   
                         </div>
-                        
                     </main>
                 </div> <!-- end of form container -->
             </div> <!-- end of col -->
         </div> <!-- end of row -->
-    </div> <!-- end of container -->
+    </div>
     <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 79">
         <defs>
           <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -126,9 +116,9 @@
         </defs>
         <title>footer-frame</title>
         <path class="cls-2" d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z" transform="translate(0 -0.188)" fill="url(#grad1)" />
-      </svg>
+      </svg> <!-- end of container -->
 </header>
-<!-- end of ex-header -->
+ <!-- end of ex-header -->
 <!-- end of header -->
 
 <style>
@@ -263,12 +253,23 @@ main .total div {
         width: 100px; /* Adjust the width as needed */
         height: auto; /* Maintain the aspect ratio */
     }
-    .button-container {
-        display: flex;
-        justify-content: left;
-        margin-top: 20px;
+    .form-control-submit-button {
+        display: inline-block;
+        width: 50%;
+        height: 3.125rem;
+        border: 1px solid #ff0000;
+        border-radius: 1.5rem;
+        background-color: #ff0000;
+        color: #fff;
+        font: 700 0.875rem/0 "Open Sans", sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-left: 25%;
     }
- 
+    .form-control-submit-button:hover {
+        background-color: transparent;
+        color: #ff0000;
+    }
 @media (max-width:1024px) {
 	main {
 		width: 95%;

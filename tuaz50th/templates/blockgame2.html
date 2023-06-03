@@ -1,0 +1,222 @@
+
+<div class="fade"></div>
+<audio id="myAudio" src="https://tuaz.s3.ap-northeast-2.amazonaws.com/static/starwars.mp3" controls autoplay></audio>
+<canvas id="canvas"></canvas>
+<section class="star-wars">
+
+  <div class="crawl" style="text-align: center;">
+    <div class="title">
+      <p>ABOUT</p>
+      <h1>터키아제르바이잔어과 <br>50주년 기획단</h1>
+    </div>
+    <p class="center">Software developer</p>
+      <p class="center">18학번 이현제</p>
+      <p class="center">Director</p>
+      <p class="center">18학번 송준엽</p>
+      <p class="center">programing&UI Section director</p>
+      <p class="center">18학번 이현제</p>
+      <p class="center">System programing Section director </p>
+      <p class="center">18학번 이현제</p>
+      <p class="center">3D Graphic Section director</p>
+      <p class="center">20학번 김서연</p>
+      <p class="center">Fuction Development team </p>
+      <p class="center">18학번 이현제 18학번 송준엽</p><br>
+      <p class="center">3D Graphic Section </p>
+      <br>
+      <p class="center">Character Modeling</p>
+      <p class="center">22학번 전윤아 23학번 양지은</p>
+      <p class="center">Logo Design </p>
+      <p class="center">18학번 송준엽 20학번 김서연 22학번 전윤아 23학번 양지은</p>
+      <p class="center">Motion Design</p>
+      <p class="center">18학번 이현제 20학번 김서연 23학번 양지은</p>
+      <p class="center">50th Anniversary Planning team Director </p>
+      <p class="center">18학번 송준엽</p>
+      <br>
+      <p class="center">50th Anniversary Planning team</p>
+      <br>
+      <p class="center">Contents planning team </p>
+      <p class=>22학번 고나영 23학번 송채원 23학번 안하영</p>
+      <p class="center">Event planning team</p>
+      <p class="center">22학번 노혜연 22학번 심어진</p>
+      <p class="center">Communication planning team</p>
+      <p class="center">22학번 최나연</p>
+      <p class="center">Design&Marketing team </p>
+      <p class="center">22학번 전윤아 23학번 양지은</p>
+      <p class="center">50th Anniversary Digital Support</p>
+      <p class="center">18학번 이현제 20학번 김서연</p>
+      <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/static/학생회로고.png" alt="학생회 icon" class="student-icon">
+      
+  </div>
+</section>
+
+<style>
+    body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+.fade {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  top: -25px;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.star-wars {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 800px;
+  color: #feda4a;
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-size: 500%;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: justify;
+}
+
+.crawl {
+  position: relative;
+  top: 99999px;
+  transform-origin: 50% 100%;
+  animation: crawl 60s linear;
+}
+
+.crawl > .title {
+  font-size: 90%;
+  text-align: center;
+}
+
+.crawl > .title h1 {
+  margin: 0 0 100px;
+  text-transform: uppercase;
+}
+#canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+        }
+@keyframes crawl {
+	0% {
+    top: -100px;
+    transform: rotateX(20deg)  translateZ(0);
+  }
+	100% { 
+    top: -000px;
+    transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
+</style>
+<script>
+"use strict";
+
+var canvas = document.getElementById('canvas'),
+  ctx = canvas.getContext('2d'),
+  w = canvas.width = window.innerWidth,
+  h = canvas.height = window.innerHeight,
+    
+  hue = 217,
+  stars = [],
+  count = 0,
+  maxStars = 1400;
+
+// Thanks @jackrugile for the performance tip! https://codepen.io/jackrugile/pen/BjBGoM
+// Cache gradient
+var canvas2 = document.createElement('canvas'),
+    ctx2 = canvas2.getContext('2d');
+    canvas2.width = 100;
+    canvas2.height = 100;
+var half = canvas2.width/2,
+    gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+    gradient2.addColorStop(0.025, '#fff');
+    gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+    gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+    gradient2.addColorStop(1, 'transparent');
+
+    ctx2.fillStyle = gradient2;
+    ctx2.beginPath();
+    ctx2.arc(half, half, half, 0, Math.PI * 2);
+    ctx2.fill();
+
+// End cache
+
+function random(min, max) {
+  if (arguments.length < 2) {
+    max = min;
+    min = 0;
+  }
+  
+  if (min > max) {
+    var hold = max;
+    max = min;
+    min = hold;
+  }
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function maxOrbit(x,y) {
+  var max = Math.max(x,y),
+      diameter = Math.round(Math.sqrt(max*max + max*max));
+  return diameter/2;
+}
+
+var Star = function() {
+
+  this.orbitRadius = random(maxOrbit(w,h));
+  this.radius = random(60, this.orbitRadius) / 12;
+  this.orbitX = w / 2;
+  this.orbitY = h / 2;
+  this.timePassed = random(0, maxStars);
+  this.speed = random(this.orbitRadius) / 50000;
+  this.alpha = random(2, 10) / 10;
+
+  count++;
+  stars[count] = this;
+}
+
+Star.prototype.draw = function() {
+  var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
+      y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
+      twinkle = random(10);
+
+  if (twinkle === 1 && this.alpha > 0) {
+    this.alpha -= 0.05;
+  } else if (twinkle === 2 && this.alpha < 1) {
+    this.alpha += 0.05;
+  }
+
+  ctx.globalAlpha = this.alpha;
+    ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+  this.timePassed += this.speed;
+}
+
+for (var i = 0; i < maxStars; i++) {
+  new Star();
+}
+
+function animation() {
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 0.8;
+    ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 1)';
+    ctx.fillRect(0, 0, w, h)
+  
+  ctx.globalCompositeOperation = 'lighter';
+  for (var i = 1, l = stars.length; i < l; i++) {
+    stars[i].draw();
+  };  
+  
+  window.requestAnimationFrame(animation);
+}
+
+animation();
+</script>

@@ -1,0 +1,424 @@
+<!-- ALL CREDIT FOR THE SCROLLING TEXT GOES TO 
+     Craig Buckler
+     http://www.sitepoint.com/css3-starwars-scrolling-text/ 
+
+Blame me for the music via embedded video bit
+-->
+<canvas id="canvas"></canvas>
+<div style="overflow:hidden; position:absolute; left:0; top:0; width:50px; height:25px;">
+    <div style="margin-top:-290px;">
+    <object width="420" height="315">
+      <param name="movie" value="https://www.youtube.com/v/EjMNNpIksaI?version=3&amp;hl=en_US&autoplay=1&amp;autohide=2"></param>
+      <param name="allowFullScreen" value="true"></param>
+      <param name="allowscriptaccess" value="always"></param>
+      <embed src="https://www.youtube.com/v/EjMNNpIksaI?version=3&amp;hl=en_US&autoplay=1&amp;autohide=2" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed>
+    </object>
+    </div>
+  </div>
+  <button id="playButton" href="#" class="button button--danger button--secondary" style="position: absolute;">
+    음악 재생
+    <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.6738 7.35355H0V6.35355H17.6738L12.0273 0.707106L12.7344 0L19.588 6.85355L12.7344 13.7071L12.0273 13L17.6738 7.35355Z" fill="currentColor" />
+    </svg>
+  </button>
+  <audio id="myAudio" src="https://tuaz.s3.ap-northeast-2.amazonaws.com/static/starwars.mp3" autoplay></audio>
+
+  <h1>TUAZ<sub>50주년기획단</sub></h1>
+  <div id="titles">
+    <div id="titlecontent">
+      <p class="center">ABOUT</p>
+      <p class="center">Software developer</p>
+      <p class="center">18학번 이현제</p>
+      <p class="center">Director</p>
+      <p class="center">18학번 송준엽</p>
+      <p class="center">programing&UI Section director</p>
+      <p class="center">18학번 이현제</p>
+      <p class="center">System programing Section director </p>
+      <p class="center">18학번 이현제</p>
+      <p class="center">3D Graphic Section director</p>
+      <p class="center">20학번 김서연</p>
+      <p class="center">Fuction Development team </p>
+      <p class="center">18학번 이현제 18학번 송준엽</p><br>
+      <p class="center">3D Graphic Section </p>
+      <br>
+      <p class="center">Character Modeling</p>
+      <p class="center">22학번 전윤아 23학번 양지은</p>
+      <p class="center">Logo Design </p>
+      <p class="center">18학번 송준엽 20학번 김서연 22학번 전윤아 23학번 양지은</p>
+      <p class="center">Motion Design</p>
+      <p class="center">18학번 이현제 20학번 김서연 23학번 양지은</p>
+      <p class="center">50th Anniversary Planning team Director </p>
+      <p class="center">18학번 송준엽</p>
+      <br>
+      <p class="center">50th Anniversary Planning team</p>
+      <p class="center">Contents planning team </p>
+      <p class=>22학번 고나영 23학번 송채원 23학번 안하영</p>
+      <p class="center">Event planning team</p>
+      <p class="center">22학번 노혜연 22학번 심어진</p>
+      <p class="center">Communication planning team</p>
+      <p class="center">22학번 최나연</p>
+      <p class="center">Design&Marketing team </p>
+      <p class="center">22학번 전윤아 23학번 양지은</p>
+      <p class="center">50th Anniversary Digital Support</p>
+      <p class="center">18학번 이현제 20학번 김서연</p>
+      <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/static/학생회로고.png" alt="학생회 icon" class="student-icon">
+    
+      
+      </div>
+  </div>
+  <iframe style="visibility:hidden" width="560" height="315" src="https://www.youtube.com/embed/1KAOq7XX2OY" frameborder="0" allowfullscreen></iframe>
+<style>
+    /* 
+** ALL CREDIT GOES TO 
+** Craig Buckler
+** http://www.sitepoint.com/css3-starwars-scrolling-text/
+**
+** Blame me for the music via embedded video bit
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+
+* { padding: 0; margin: 0; }
+
+body, html
+{
+  width: 100%;
+  height: 100%;
+  font-family: "Droid Sans", arial, verdana, sans-serif;
+	font-weight: 700;
+	color: #ff6;
+	background-color: #000;
+	overflow: hidden;
+}
+
+p#start
+{
+	position: relative;
+	width: 16em;
+	font-size: 200%;
+	font-weight: 400;
+	margin: 20% auto;
+	color: #4ee;
+	opacity: 0;
+	z-index: 1;
+	-webkit-animation: intro 2s ease-out;
+	-moz-animation: intro 2s ease-out;
+	-ms-animation: intro 2s ease-out;
+	-o-animation: intro 2s ease-out;
+	animation: intro 2s ease-out;
+}
+
+@-webkit-keyframes intro {
+	0% { opacity: 1; }
+	90% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@-moz-keyframes intro {
+	0% { opacity: 1; }
+	90% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@-ms-keyframes intro {
+	0% { opacity: 1; }
+	90% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@-o-keyframes intro {
+	0% { opacity: 1; }
+	90% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@keyframes intro {
+	0% { opacity: 1; }
+	90% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+h1
+{
+	position: absolute;
+	width: 2.6em;
+	left: 50%;
+	top: 25%;
+	font-size: 10em;
+	text-align: center;
+	margin-left: -1.3em;
+	line-height: 0.8em;
+	letter-spacing: -0.05em;
+	color: #000;
+	text-shadow: -2px -2px 0 #ff6, 2px -2px 0 #ff6, -2px 2px 0 #ff6, 2px 2px 0 #ff6;
+	opacity: 0;
+	z-index: 1;
+	-webkit-animation: logo 5s ease-out 2.5s;
+	-moz-animation: logo 5s ease-out 2.5s;
+	-ms-animation: logo 5s ease-out 2.5s;
+	-o-animation: logo 5s ease-out 2.5s;
+	animation: logo 5s ease-out 2.5s;
+}
+
+h1 sub
+{
+	display: block;
+	font-size: 0.3em;
+	letter-spacing: 0;
+	line-height: 0.8em;
+}
+
+@-webkit-keyframes logo {
+	0% { -webkit-transform: scale(1); opacity: 1; }
+	50% { opacity: 1; }
+	100% { -webkit-transform: scale(0.1); opacity: 0; }
+}
+
+@-moz-keyframes logo {
+	0% { -moz-transform: scale(1); opacity: 1; }
+	50% { opacity: 1; }
+	100% { -moz-transform: scale(0.1); opacity: 0; }
+}
+
+@-ms-keyframes logo {
+	0% { -ms-transform: scale(1); opacity: 1; }
+	50% { opacity: 1; }
+	100% { -ms-transform: scale(0.1); opacity: 0; }
+}
+
+@-o-keyframes logo {
+	0% { -o-transform: scale(1); opacity: 1; }
+	50% { opacity: 1; }
+	100% { -o-transform: scale(0.1); opacity: 0; }
+}
+
+@keyframes logo {
+	0% { transform: scale(1); opacity: 1; }
+	50% { opacity: 1; }
+	100% { transform: scale(0.1); opacity: 0; }
+}
+
+/* the interesting 3D scrolling stuff */
+#titles
+{
+	position: absolute;
+	width: 18em;
+	height: 50em;
+	bottom: 0;
+	left: 50%;
+	margin-left: -9em;
+	font-size: 350%;
+	text-align: justify;
+	overflow: hidden;
+	-webkit-transform-origin: 50% 100%;
+	-moz-transform-origin: 50% 100%;
+	-ms-transform-origin: 50% 100%;
+	-o-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+	-webkit-transform: perspective(300px) rotateX(25deg);
+	-moz-transform: perspective(300px) rotateX(25deg);
+	-ms-transform: perspective(300px) rotateX(25deg);
+	-o-transform: perspective(300px) rotateX(25deg);
+	transform: perspective(300px) rotateX(25deg);
+}
+
+#titles:after
+{
+	position: absolute;
+	content: ' ';
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 60%;
+	background-image: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+	background-image: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+	background-image: -ms-linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+	background-image: -o-linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+	background-image: linear-gradient(top, rgba(0,0,0,1) 0%, transparent 100%);
+	pointer-events: none;
+}
+
+#titles p
+{
+  position: relative;
+	text-align: justify;
+	margin: 0.8em 0;
+}
+
+#titles p.center
+{
+  position: relative;
+	text-align: center;
+  z-index: 1;
+}
+
+#titles a
+{
+	color: #ff6;
+	text-decoration: underline;
+}
+
+#titlecontent
+{
+	position: absolute;
+	top: 100%;
+	-webkit-animation: scroll 100s linear 4s infinite;
+	-moz-animation: scroll 100s linear 4s infinite;
+	-ms-animation: scroll 100s linear 4s infinite;
+	-o-animation: scroll 100s linear 4s infinite;
+	animation: scroll 100s linear 4s infinite;
+}
+
+/* animation */
+@-webkit-keyframes scroll {
+	0% { top: 100%; }
+	100% { top: -170%; }
+}
+
+@-moz-keyframes scroll {
+	0% { top: 100%; }
+	100% { top: -170%; }
+}
+
+@-ms-keyframes scroll {
+	0% { top: 100%; }
+	100% { top: -170%; }
+}
+
+@-o-keyframes scroll {
+	0% { top: 100%; }
+	100% { top: -170%; }
+}
+
+@keyframes scroll {
+	0% { top: 100%; }
+	100% { top: -170%; }
+}
+
+#canvas {
+
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+        }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var playButton = document.getElementById("playButton");
+  var audio = document.getElementById("myAudio");
+
+  playButton.addEventListener("click", function() {
+    audio.play();
+  });
+  
+  // 사용자의 인터랙션 없이 자동 재생을 트리거하기 위해 버튼을 클릭
+  setTimeout(function() {
+    playButton.click();
+  }, 1000);
+});
+    "use strict";
+
+var canvas = document.getElementById('canvas'),
+  ctx = canvas.getContext('2d'),
+  w = canvas.width = window.innerWidth,
+  h = canvas.height = window.innerHeight,
+    
+  hue = 217,
+  stars = [],
+  count = 0,
+  maxStars = 1400;
+
+// Thanks @jackrugile for the performance tip! https://codepen.io/jackrugile/pen/BjBGoM
+// Cache gradient
+var canvas2 = document.createElement('canvas'),
+    ctx2 = canvas2.getContext('2d');
+    canvas2.width = 100;
+    canvas2.height = 100;
+var half = canvas2.width/2,
+    gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+    gradient2.addColorStop(0.025, '#fff');
+    gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+    gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+    gradient2.addColorStop(1, 'transparent');
+
+    ctx2.fillStyle = gradient2;
+    ctx2.beginPath();
+    ctx2.arc(half, half, half, 0, Math.PI * 2);
+    ctx2.fill();
+
+// End cache
+
+function random(min, max) {
+  if (arguments.length < 2) {
+    max = min;
+    min = 0;
+  }
+  
+  if (min > max) {
+    var hold = max;
+    max = min;
+    min = hold;
+  }
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function maxOrbit(x,y) {
+  var max = Math.max(x,y),
+      diameter = Math.round(Math.sqrt(max*max + max*max));
+  return diameter/2;
+}
+
+var Star = function() {
+
+  this.orbitRadius = random(maxOrbit(w,h));
+  this.radius = random(60, this.orbitRadius) / 12;
+  this.orbitX = w / 2;
+  this.orbitY = h / 2;
+  this.timePassed = random(0, maxStars);
+  this.speed = random(this.orbitRadius) / 50000;
+  this.alpha = random(2, 10) / 10;
+
+  count++;
+  stars[count] = this;
+}
+
+Star.prototype.draw = function() {
+  var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
+      y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
+      twinkle = random(10);
+
+  if (twinkle === 1 && this.alpha > 0) {
+    this.alpha -= 0.05;
+  } else if (twinkle === 2 && this.alpha < 1) {
+    this.alpha += 0.05;
+  }
+
+  ctx.globalAlpha = this.alpha;
+    ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+  this.timePassed += this.speed;
+}
+
+for (var i = 0; i < maxStars; i++) {
+  new Star();
+}
+
+function animation() {
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 0.8;
+    ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 1)';
+    ctx.fillRect(0, 0, w, h)
+  
+  ctx.globalCompositeOperation = 'lighter';
+  for (var i = 1, l = stars.length; i < l; i++) {
+    stars[i].draw();
+  };  
+  
+  window.requestAnimationFrame(animation);
+}
+
+animation();
+</script>
