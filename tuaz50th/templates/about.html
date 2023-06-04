@@ -1,6 +1,3 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
 <!-- ALL CREDIT FOR THE SCROLLING TEXT GOES TO 
      Craig Buckler
      http://www.sitepoint.com/css3-starwars-scrolling-text/ 
@@ -310,16 +307,19 @@ h1 sub
             height: 100%;
         }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 428px){
   /* Styles for iPhone mobile devices */
-
+  h1 {
+    z-index: 2;
+  }
   #titles {
-      top: 40%;
+    
   }
 
   #titles p.center {
-      font-size: 250%;
+      font-size: 200%;
       margin-top: -0.5em;
+      text-align: cnter;
   }
 }
 </style>
@@ -441,4 +441,3 @@ function animation() {
 
 animation();
 </script>
-{% endblock %}
