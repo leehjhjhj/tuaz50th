@@ -14,9 +14,15 @@
                         <form method="POST" action="{% url 'supply:find_order' %}" id="find_order">
                             {% csrf_token %}
                             <div class="form-group">
-                                주문할 때 작성하신 핸드폰 번호를 작성해주세요 ('-' 없이 8자리)
+                                1. 주문할 때 작성하신 핸드폰 번호를 작성해주세요 ('-' 없이 8자리)
                                 <input class="form-control" type="text" placeholder="010xxxxxxxx" aria-label=".form-control-lg example" name="phone" required maxlength="11">
                             </div>
+                            <div class="form-group">
+                                2. 주문할 때 설정하신 패스워드를 입력해주세요
+                                <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="password" style="width:250px;" required maxlength="4">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <br>
                             <button type="submit" name="draft" class="form-control-submit-button" id="submit-btn">주문조회</button>
                         </form>
                     </div> <!-- end of order-info -->

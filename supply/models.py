@@ -16,7 +16,8 @@ class Order(models.Model):
     all_price = models.IntegerField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
-
+    password = models.CharField(max_length=4, default="0000")
+    
     def __str__(self):
         return f"주문번호:{self.id} | {self.number_name} | {self.get_status_display()}"
     

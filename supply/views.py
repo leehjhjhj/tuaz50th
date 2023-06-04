@@ -21,6 +21,7 @@ def create(request):
         new_order.email = email_id + '@' + email_server
         new_order.grade = request.POST['grade']
         new_order.all_price = request.POST['total-price-input']
+        new_order.password = request.POST['password']
         new_order.status = 'waiting'
 
         new_order.number_name = request.POST['grade'] + " " + request.POST['name']
@@ -66,11 +67,15 @@ def find_order(request):
 
     elif request.method == 'POST':
         phone = request.POST['phone']
-        orders = Order.objects.filter(phone=phone)
-        context = {
-            'orders': orders
-            }
-        return render(request, 'find_order.html', context)
+        password = request.POST['password']
+        orders = Order.objects.filter(phone=phone, password=password)
+        if orders:
+            context = {
+                'orders': orders
+                }
+            return render(request, 'find_order.html', context)
+        else:
+            return render(request, 'fail.html')
 
 
 def cancel_order(request, order_id):

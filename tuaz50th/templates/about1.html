@@ -1,0 +1,66 @@
+
+{% load static %}
+{% block content %}
+<a href="{% url 'home' %}" style="color: transparent"> <h1>준비중!</h1> </a>
+
+<style>
+    :root {
+--red: #509E2F;
+--orange: #EF3340;
+--yellow: #00B5E2;
+--green: #509E2F;
+--blue: #EF3340;
+--indigo: #00B5E2;
+--violet: #EF3340;
+}
+
+body {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  align-content: center;
+  font-family: sans-serif;
+  background: #aaa;
+}
+
+h1 {
+  font-size: 15vw;
+  color: white;
+  -webkit-text-stroke: 0.015em black;
+  text-shadow: 0.05em 0.05em var(--red), 0.1em 0.1em var(--orange), 0.15em 0.15em var(--yellow), 0.2em 0.2em var(--green), 0.25em 0.25em var(--blue), 0.3em 0.3em var(--indigo), 0.35em 0.35em var(--violet);
+  animation: text-shadow-cascade 1s infinite steps(1);
+}
+
+@keyframes text-shadow-cascade {
+  0% {
+    text-shadow: 0.05em 0.05em var(--red), 0.1em 0.1em var(--orange), 0.15em 0.15em var(--yellow), 0.2em 0.2em var(--green), 0.25em 0.25em var(--blue), 0.3em 0.3em var(--indigo), 0.35em 0.35em var(--violet);
+  }
+  14.29% {
+    text-shadow: 0.05em 0.05em var(--violet), 0.1em 0.1em var(--red), 0.15em 0.15em var(--orange), 0.2em 0.2em var(--yellow), 0.25em 0.25em var(--green), 0.3em 0.3em var(--blue), 0.35em 0.35em var(--indigo);
+  }
+  28.57% {
+    text-shadow: 0.05em 0.05em var(--indigo), 0.1em 0.1em var(--violet), 0.15em 0.15em var(--red), 0.2em 0.2em var(--orange), 0.25em 0.25em var(--yellow), 0.3em 0.3em var(--green), 0.35em 0.35em var(--blue);
+  }
+  42.86% {
+    text-shadow: 0.05em 0.05em var(--blue), 0.1em 0.1em var(--indigo), 0.15em 0.15em var(--violet), 0.2em 0.2em var(--red), 0.25em 0.25em var(--orange), 0.3em 0.3em var(--yellow), 0.35em 0.35em var(--green);
+  }
+  57.14% {
+    text-shadow: 0.05em 0.05em var(--green), 0.1em 0.1em var(--blue), 0.15em 0.15em var(--indigo), 0.2em 0.2em var(--violet), 0.25em 0.25em var(--red), 0.3em 0.3em var(--orange), 0.35em 0.35em var(--yellow);
+  }
+  71.43% {
+    text-shadow: 0.05em 0.05em var(--yellow), 0.1em 0.1em var(--green), 0.15em 0.15em var(--blue), 0.2em 0.2em var(--indigo), 0.25em 0.25em var(--violet), 0.3em 0.3em var(--red), 0.35em 0.35em var(--orange);
+  }
+  85.71% {
+    text-shadow: 0.05em 0.05em var(--orange), 0.1em 0.1em var(--yellow), 0.15em 0.15em var(--green), 0.2em 0.2em var(--blue), 0.25em 0.25em var(--indigo), 0.3em 0.3em var(--violet), 0.35em 0.35em var(--red);
+  }
+  100% {
+    text-shadow: 0.05em 0.05em var(--red), 0.1em 0.1em var(--orange), 0.15em 0.15em var(--yellow), 0.2em 0.2em var(--green), 0.25em 0.25em var(--blue), 0.3em 0.3em var(--indigo), 0.35em 0.35em var(--violet);
+  }
+}
+</style>
+<script></script>
+{% endblock %}

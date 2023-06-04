@@ -21,13 +21,19 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                2. 핸드폰 번호를 작성해주세요 ('-' 없이 8자리)
+                                2. 주문조회에 사용될 핸드폰 번호를 작성해주세요. ('-' 없이 8자리)
                                 <input class="form-control" type="text" placeholder="010xxxxxxxx" aria-label=".form-control-lg example" name="phone" required maxlength="11">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
                             <div class="form-group">
-                                3. 이메일을 적어주세요
+                                3. 주문조회에 사용될 패스워드를 입력해주세요. (example: 0000)<br> 🚨주의! 첫 주문이 아니시라면 되도록 전과 같은 비밀번호로 설정하세요! 주문 조회에 차질이 있을 수 있습니다.🚨
+                                <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="password" style="width:250px;" required maxlength="4">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                4. 이메일을 적어주세요.
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="example" name="email_id" required>
                                     <span class="input-group-text">@</span>
@@ -38,13 +44,14 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                4. 학번을 입력해주세요(example: 19)
+                                5. 학번을 입력해주세요. (example: 18)
                                 <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="grade" style="width:180px;" required maxlength="2">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
+                            
                             <div class="form-group">
-                                5. 상품을 선택해주세요
+                                6. 상품을 선택해주세요
                                 <div id="product-container">
                                     <div class="product-container">
                                         <div class="quantity-container">
