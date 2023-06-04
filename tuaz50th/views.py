@@ -7,3 +7,7 @@ def about(request):
 
 def blockgame(request):
     return render(request, 'blockgame.html')
+
+
+def intro(request):
+    return render(request, 'intro.html')

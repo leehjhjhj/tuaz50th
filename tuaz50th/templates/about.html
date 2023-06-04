@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <!-- ALL CREDIT FOR THE SCROLLING TEXT GOES TO 
      Craig Buckler
      http://www.sitepoint.com/css3-starwars-scrolling-text/ 
@@ -62,7 +65,7 @@ Blame me for the music via embedded video bit
       <p class="center">50th Anniversary Digital Support</p>
       <p class="center">18학번 이현제 20학번 김서연</p>
       <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/static/학생회로고.png" alt="학생회 icon" class="student-icon">
-      <p class="center">터키아제르바이잔어과 36대 총학생회</p>
+      <p class="center">터키아제르바이잔어과 학생회</p>
       <p class="center">Copyright © 2023 이현제 All Rights Reserved.</p>
       </div>
   </div>
@@ -306,6 +309,19 @@ h1 sub
             width: 100%;
             height: 100%;
         }
+
+  @media screen and (max-width: 375px) {
+  /* Styles for iPhone mobile devices */
+
+  #titles {
+      top: 40%;
+  }
+
+  #titles p.center {
+      font-size: 250%;
+      margin-top: -0.5em;
+  }
+}
 </style>
 
 <script>
@@ -425,3 +441,4 @@ function animation() {
 
 animation();
 </script>
+{% endblock %}
