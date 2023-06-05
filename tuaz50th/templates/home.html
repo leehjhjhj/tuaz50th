@@ -17,6 +17,38 @@
                         <a class="btn-solid-lg page-scroll" href="{% url 'supply:buy' %}">굿즈구매하기</a> -->
                         </br> </br> 
                     </div> <!-- end of text-container -->
+                    <div class="cards-list">
+                        <div class="card 4">
+                            <a href="{% url 'item:all' %}">
+                            <div class="card_image">
+                              <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/item_thumbnails/2959659_16735871680790_500.jpg" />
+                            </div>
+                            <div class="card_title title-black">
+                              <p class="card_title">굿즈둘러보기</p>
+                            </div>
+                          </div>
+                        </a>
+                          <div class="card 4">
+                            <a href="{% url 'supply:buy' %}">
+                            <div class="card_image">
+                              <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/item_thumbnails/13814_202205170035430404_85545.jpeg" />
+                            </div>
+                            <div class="card_title title-black">
+                              <p class="card_title">굿즈구매</p>
+                            </div>
+                          </div>
+                        </a>
+                          <div class="card 4">
+                            <a href="{% url 'supply:find_order' %}">
+                            <div class="card_image">
+                              <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/item_thumbnails/img.jpg" />
+                            </div>
+                            <div class="card_title title-black">
+                              <p class="card_title">주문조회</p>
+                            </div>
+                          </div>
+                        </a>
+                    </div>
                 </div> <!-- end of col -->
                 <div class="col-lg-5 col-xl-5">
                     <div class="image-container">
@@ -34,38 +66,7 @@
                         </form>
                     </div>
                 </div> <!-- end of col -->
-                <div class="cards-list">
-                    <div class="card 4">
-                        <a href="{% url 'item:all' %}">
-                        <div class="card_image">
-                          <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/item_thumbnails/2959659_16735871680790_500.jpg" />
-                        </div>
-                        <div class="card_title title-black">
-                          <p class="card_title">굿즈둘러보기</p>
-                        </div>
-                      </div>
-                    </a>
-                      <div class="card 4">
-                        <a href="{% url 'supply:buy' %}">
-                        <div class="card_image">
-                          <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/item_thumbnails/13814_202205170035430404_85545.jpeg" />
-                        </div>
-                        <div class="card_title title-black">
-                          <p class="card_title">굿즈구매</p>
-                        </div>
-                      </div>
-                    </a>
-                      <div class="card 4">
-                        <a href="{% url 'supply:find_order' %}">
-                        <div class="card_image">
-                          <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/item_thumbnails/img.jpg" />
-                        </div>
-                        <div class="card_title title-black">
-                          <p class="card_title">주문조회</p>
-                        </div>
-                      </div>
-                    </a>
-                </div>
+                
                 </div>
             </div>
         </div>
@@ -84,13 +85,14 @@
             background-color: transparent;
         } 
         .text-container {
-        padding: 20px;
+        padding: 10px;
         background-color: rgba(155, 0, 0, 0.59);
         }
         
         .image-container {
         position: relative;
         padding-bottom: 60px;
+        order: 1;
         }
             
         .guestbook {
@@ -150,8 +152,8 @@
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
-        margin-top: 7%;
-        
+        margin-top: 3%;
+        order: 2;
     }
 
     .card {
@@ -206,7 +208,14 @@
     .title-black {
         color: rgb(255, 255, 255);
     }
-
+    @media screen and  (min-device-width : 375px) and (max-device-width : 479px){
+        .image-container {
+            order : 2;
+        }
+        .cards-list{
+            order : 1
+        }
+    }
     </style>
 </header>
     <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 79">
