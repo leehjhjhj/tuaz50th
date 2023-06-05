@@ -34,9 +34,44 @@
                         </form>
                     </div>
                 </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of header-content -->
+                <div class="cards-list">
+                    <div class="card 4">
+                        <a href="{% url 'item:all' %}">
+                        <div class="card_image">
+                          <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/item_thumbnails/2959659_16735871680790_500.jpg" />
+                        </div>
+                        <div class="card_title title-black">
+                          <p class="card_title">굿즈둘러보기</p>
+                        </div>
+                      </div>
+                    </a>
+                      <div class="card 4">
+                        <a href="{% url 'supply:buy' %}">
+                        <div class="card_image">
+                          <img src="" />
+                        </div>
+                        <div class="card_title title-black">
+                          <p class="card_title">굿즈구매</p>
+                        </div>
+                      </div>
+                    </a>
+                      <div class="card 4">
+                        <a href="{% url 'supply:find_order' %}">
+                        <div class="card_image">
+                          <img src="" />
+                        </div>
+                        <div class="card_title title-black">
+                          <p class="card_title">주문조회</p>
+                        </div>
+                      </div>
+                    </a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
     <style>
         body {
             background-image: url('{% static "images/ballon.jpg" %}');
@@ -109,7 +144,69 @@
             width: 100%;
             margin-bottom: 20px;
         }
+        .cards-list {
+        z-index: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 7%;
         
+    }
+
+    .card {
+        margin: 30px auto;
+        width: 30%;
+        padding-top: 27%; /* 1:1 비율을 유지하기 위해 padding-top을 추가 */
+        position: relative;
+        border-radius: 40px;
+        box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+        cursor: pointer;
+        transition: 0.4s;
+    }
+
+    .card .card_image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 40px;
+        overflow: hidden;
+    }
+
+    .card .card_image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card .card_title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        border-radius: 0px 0px 40px 40px;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .card:hover {
+        transform: scale(0.9, 0.9);
+        box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), -5px -5px 30px 15px rgba(0,0,0,0.22);
+    }
+
+    .title-white {
+        color: white;
+    }
+
+    .title-black {
+        color: rgb(255, 255, 255);
+    }
+
     </style>
 </header>
     <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 79">

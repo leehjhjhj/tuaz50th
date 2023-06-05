@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from item.models import *
 from .models import *
-from django.views.decorators.csrf import csrf_exempt
+
 
 def buy(request):
     all_item = Item.objects.all()
