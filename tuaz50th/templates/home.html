@@ -11,6 +11,7 @@
                         <br>
                         <h1>터키아제르바이잔어과</br>  50주년 기념샵</h1>
                         <br>
+                        
                         <p class="p-large">Since 1973, 50th anniversary<br> 터키어과와 함께해주신 모든 분들께 감사드립니다. </p>
                         <!-- <a class="btn-solid-lg page-scroll" href="">캐릭터소개</a>
                         <a class="btn-solid-lg page-scroll" href="{% url 'item:all' %}">굿즈둘러보기</a>
@@ -83,10 +84,12 @@
         }
         .header {
             background-color: transparent;
+            padding-bottom: 50px;
         } 
         .text-container {
-        padding: 10px;
+        padding : 10px;
         background-color: rgba(155, 0, 0, 0.59);
+        margin-bottom: 10rem;
         }
         
         .image-container {
@@ -152,7 +155,7 @@
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
-        margin-top: 3%;
+        margin-top: 1rem;
         order: 2;
     }
 
@@ -209,14 +212,6 @@
 
     .title-black {
         color: rgb(255, 255, 255);
-    }
-    @media screen and  (min-device-width : 375px) and (max-device-width : 479px){
-        .image-container {
-            order : 2;
-        }
-        .cards-list{
-            order : 1
-        }
     }
     </style>
 </header>
