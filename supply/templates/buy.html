@@ -15,7 +15,7 @@
                             {%csrf_token%}
                             <br>
                             <div class="form-group">
-                                1. 이름를 작성해주세요
+                                1. 이름를 작성해주세요. 🚨 예금주와 동일해야 합니다!
                                 <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="name" style="width: 200px;" required>
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -27,8 +27,8 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                3. 주문조회에 사용될 패스워드를 입력해주세요. (example: 0000)<br> 🚨주의! 첫 주문이 아니시라면 되도록 전과 같은 비밀번호로 설정하세요! 주문 조회에 차질이 있을 수 있습니다.🚨
-                                <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="password" style="width:250px;" required maxlength="4">
+                                3. 주문조회에 사용될 패스워드 4자리를 입력해주세요. (example: 0000)<br> 🚨 주의! 첫 주문이 아니시라면 되도록 전과 같은 비밀번호로 설정하세요! 주문 조회에 차질이 있을 수 있습니다. 🚨
+                                <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="password" style="width:250px;" required maxlength="4" minlength="4">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
