@@ -4,7 +4,7 @@ from .models import *
 
 
 def buy(request):
-    all_item = Item.objects.all()
+    all_item = Item.objects.all().exclude(price=0)
     context = {
         'all_item': all_item,
     }
