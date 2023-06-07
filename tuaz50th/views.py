@@ -8,6 +8,8 @@ def about(request):
 def blockgame(request):
     return render(request, 'blockgame.html')
 
+def audiotest(request):
+    return render(request, 'audiotest.html')
 
 def intro(request):
     return render(request, 'intro.html')
