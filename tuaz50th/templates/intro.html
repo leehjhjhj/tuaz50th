@@ -1,178 +1,94 @@
-<body>
-    <section class="homeHero">
-          <div class="homeHero--inner">
-              <h2 class="homeHero__title">
-                  <div style="position:relative;display:inline-block;">Turk</div>
-                  <div style="position:relative;display:inline-block;">Azeri</div>
-                  <div style="position:relative;display:inline-block;">50th</div>
-                  <div style="position:relative;display:inline-block;">Anniversary</div>
-              </h2>
-          </div>
-      </section>
-      <div class="cb-cursor">
-          <div class="cb-cursor-text"></div>
-          <div class="cb-cursor-video">
-              <div><video id="reel-clips" class="cursor-clips" preload="" loop="" muted="" playsinline="" autoplay="">
-                      <source src="https://cdn.poolhouse.co/wp-content/uploads/2021/06/02213043/clips.mp4"
-                          type="video/mp4">
-                  </video></div>
-          </div>
-      </div>
-    </body>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>TUAZ Character</h1>
+<section>
+<article>
+  <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/character/남자.png" alt="Photograph of a flying saucer over the US Capitol building">
+    <h1>쿠르트베이 Kurt Bey</h1>
+	<h3>터키의 상진 동물인 늑대를 모티브로 만들어진 캐릭터</h3>
+	<h2>생일: 10/29</h2>
+    <h2>MBTI: ESTP</h2>
+    <p>외모에서도 볼 수 있듯이 매우 활동적이고 친구가 많다. 충성심이 강한 늑대의 특성과는 달리 장난이 심하고 하기 싫은 일은 하지 않는다. 쿠르트 베이가 가장 좋아하는 음식은 터키쉬 딜라이트인데, 종종 상인들의 가게에 몰래 들어가 젤리를 훔쳐먹곤 해서 상인들에게 골칫거리로 낙인 찍혔다. 그렇지만 특유의 능글맞은 성격으로 모두에게 사랑받는 귀여운 늑대이다.</p>
+  </article>
+ <article>
+<img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/character/여자.png" alt="Photograph of a Bigfoot">
+<h1>케디 하늠 kedi hanım</h1>
+<h3>터키인들이 사랑하는 동물인 고양이를 모티브로 만들어진 캐릭터</h3>
+	<h2>생일: 08/08</h2>
+    <h2>MBTI: INFJ</h2>
+<p>활동적이고 시끄러운 소꿉친구 쿠르트 베이와는 달리 차분하고 조용한 성격이다. 터키의 수많은 고양이들 중에서 자신이 가장 예쁘다고 생각하는 공주병 말기이다. 운이 좋은 편인데 그런 점이 케디 하늠의 공주병을 점점 악화시키는 듯 하다. 가장 좋아하는 음식은 돈두르마이다. 새침한 케디 하늠은 짓궃은 상인들의 아이스크림 장난 따위는 가볍게 무시해 버린다.</p>
+</article>
+</section>
+    
+    
+  
 <style>
-    *{
-    margin: 0;padding: 0;box-sizing: border-box; }
-body {
-    color: #fff;
-    background: #1b1b1b;
-    width: 100vw;
-    font-size: 1.6rem;
-    line-height: 2.2rem;
-    font-family: proxima-nova,sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    overflow-x: hidden;
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+@font-face {
+  font-family: 'Queens Park';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/queens-park.woff') format('woff');
+  font-style: normal;
+  font-weight: 400;
 }
-.homeHero {
-    width: 100vw;
-    overflow: hidden;
-    padding-top: 0;
+section { 
+	display: flex; 
 }
-.homeHero--inner {
-	width: 100%;
-	height: 100%;
-	position: relative;
-	padding: 130px 0 0 0;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+body > h1 { 
+  font-family: Queens Park, serif;
+  font-size: 4rem;
+  text-align: center;
+  margin-top: 80px;
 }
-.homeHero__title {
-	color: #fff;
-	width: 100%;
-	max-width: 1300px;
-	margin: 0 auto;
-	padding: 0 20px;
-	font-family: proxima-nova,sans-serif;
-	font-weight: 700;
-	font-style: normal;
-	font-size: 6rem;
-	line-height: 110%;
-	text-align: center;
-	text-transform: uppercase;
-	z-index: 9;
-	overflow: hidden;
-	cursor: default;
-	position: relative;
+article { 
+  margin: 1rem;
+  -ms-flex: 1 0 0px;
+  flex: 1; 
+  /* shortcut for "flex-grow: 1". Note that it MUST be a unitless value to work; defined with a unit (e.g. flex: 1px) the shortcut would alter the flex-basis property. */
 }
-.homeHero__title {
-	font-size: 9rem;
-	line-height: 9rem;
-	text-align: center;
-    color: transparent;
-    -webkit-text-stroke: 2px #fff;
+article.breaking { 
+  -ms-flex-grow: 2; 
+  flex: 2; 
+  /* shortcut for "flex-grow: 2" */
+} 
+ 
+article img { 
+  width: 100%; height: auto; 
 }
-
-.homeHero__title div{
-    transition: 1.5s opacity ease .5s,1.5s transform ease .5s,.5s color ease,.5s -webkit-text-stroke ease,1.5s -webkit-transform ease .5s,1.5s -moz-transform ease .5s,1.5s -o-transform ease .5s;
+article h1, article h2, article h3 { font-family: Oswald, serif; }
+article h1 { 
+  font-size: 2rem; 
+  line-height: 1.3;
 }
-.homeHero__title div:hover {
-	color: #fff;
-	-webkit-text-stroke: 2px #000;
+article h2{ 
+  font-size: 1.2rem; 
+  text-align: right; 
+  line-height: 1.3;
+  margin: .3rem 0;
+  font-weight: 300;
 }
-.homeHero__clips {
-	display: none;
+article h3 { 
+	font-size: 1.2rem; 
+  text-align: left; 
+  line-height: 1.3;
+  margin: .3rem 0;
+  font-weight: 300;
 }
-.homeHero__clips {
-	width: 200px;
-	height: 200px;
-	margin-bottom: 35px;
-	object-fit: cover;
-	display: block;
-	-webkit-clip-path: polygon(50% 0%,99% 46%,100% 100%,70% 100%,70% 67%,30% 67%,30% 100%,0 100%,0 46%);
-	clip-path: polygon(50% 0%,99% 46%,100% 100%,70% 100%,70% 67%,30% 67%,30% 100%,0 100%,0 46%);
-	z-index: 10;
-	mix-blend-mode: exclusion;
+article p { 
+  font-family: Merriweather;
+  line-height: 1.6; 
 }
-.cb-cursor {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 999999999999;
-	contain: layout style size;
-	pointer-events: none;
-	will-change: transform;
-	transition: opacity .3s,color .4s;
-}
-.cb-cursor-text {
-	position: absolute;
-	top: -30px;
-	left: -30px;
-	width: 36px;
-	height: 36px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	opacity: 0;
-	color: #1b1b1b;
-	font-family: proxima-nova,sans-serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 1.6rem;
-	line-height: 1.7rem;
-	text-align: center;
-	letter-spacing: -.01em;
-	transition: opacity .4s,transform .3s,-webkit-transform .3s,-moz-transform .3s,-o-transform .3s;
-}
-.cb-cursor {
-	pointer-events: none;
-}
-.cb-cursor.-video{
-	z-index: 9;
-	mix-blend-mode: exclusion;
+@media screen and (max-width: 750px) {
+  body > h1 { font-size: 3rem; }
+  section { 
+    -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    flex-direction: column; 
+  }
 }
 
-.cb-cursor-video {
-	transform: scale(0);
-	opacity: 0;
-	transition: opacity .1s,-webkit-transform .3s ease-in-out;
-	transition: transform .3s ease-in-out,opacity .1s;
-	transition: transform .3s ease-in-out,opacity .1s,-webkit-transform .3s ease-in-out,-moz-transform .3s ease-in-out,-o-transform .3s ease-in-out;
-}
-.cb-cursor.-video .cb-cursor-video{
-	opacity: 1;
-	transform: scale(1);
-}
-.cb-cursor #reel-clips {
-	width: 350px;
-	height: 350px;
-	position: absolute;
-	top: -175px;
-	left: -175px;
-	-o-object-fit: cover;
-	object-fit: cover;
-	display: block;
-	-webkit-clip-path: polygon(50% 0%,99% 46%,100% 100%,70% 100%,70% 67%,30% 67%,30% 100%,0 100%,0 46%);
-	clip-path: polygon(50% 0%,99% 46%,100% 100%,70% 100%,70% 67%,30% 67%,30% 100%,0 100%,0 46%);
-}
+
 </style>
-<script>
-    const cursor = document.querySelector(".cb-cursor");
-window.onpointermove = event => {
-    const { clientX, clientY } = event;
-    cursor.animate({
-        left: `${clientX}px`,
-        top: `${clientY}px`
-    }, { duration: 3000, fill: "forwards" })
-}
-const elements = [...document.querySelectorAll("h2 div")]
-elements.map(element => {
-    element.onmouseover = () => {
-        cursor.classList.add("-video")
-    }
-    element.onmouseout = () => {
-        cursor.classList.remove("-video")
-    }
-})
-</script>
+
+{% endblock %}
