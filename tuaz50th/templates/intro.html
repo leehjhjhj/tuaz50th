@@ -2,9 +2,11 @@
 {% load static %}
 {% block content %}
 <h1>TUAZ Character</h1>
+<hr>
 <section>
 <article>
   <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/character/남자.png" alt="Photograph of a flying saucer over the US Capitol building">
+  
     <h1>쿠르트베이 Kurt Bey</h1>
 	<h3>터키의 상진 동물인 늑대를 모티브로 만들어진 캐릭터</h3>
 	<h2>생일: 10/29</h2>
@@ -14,7 +16,7 @@
  <article>
 <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/character/여자.png" alt="Photograph of a Bigfoot">
 <h1>케디 하늠 kedi hanım</h1>
-<h3>터키인들이 사랑하는 동물인 고양이를 모티브로 만들어진 캐릭터</h3>
+<h3>터키의 상진 동물인 늑대를 모티브로 만들어진 캐릭터</h3>
 	<h2>생일: 08/08</h2>
     <h2>MBTI: INFJ</h2>
 <p>활동적이고 시끄러운 소꿉친구 쿠르트 베이와는 달리 차분하고 조용한 성격이다. 터키의 수많은 고양이들 중에서 자신이 가장 예쁘다고 생각하는 공주병 말기이다. 운이 좋은 편인데 그런 점이 케디 하늠의 공주병을 점점 악화시키는 듯 하다. 가장 좋아하는 음식은 돈두르마이다. 새침한 케디 하늠은 짓궃은 상인들의 아이스크림 장난 따위는 가볍게 무시해 버린다.</p>
@@ -52,7 +54,14 @@ article.breaking {
   flex: 2; 
   /* shortcut for "flex-grow: 2" */
 } 
- 
+hr {
+  border : 0px;
+  border-top: 2px solid #000000;
+}
+
+.hr-solid {
+
+}
 article img { 
   width: 100%; height: auto; 
 }
