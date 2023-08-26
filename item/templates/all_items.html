@@ -13,9 +13,9 @@
           {% url 'item:all' as item_all_url %}
           <select class="custom-select custom-select mb-3 float-right" style="border: 2px solid rgba(255, 255, 255, 0.664); background-color: rgba(255, 255, 255, 0.846);" onchange="location.href = '{{ item_all_url }}?category=' + this.value;">
             <option value="all">전체</option>
-            <option {% if selected_category == 'cloth' %}selected{% endif %} value="cloth">의류</option>
+            <option {% if selected_category == 'clothes' %}selected{% endif %} value="clothes">의류</option>
             <option {% if selected_category == 'cup' %}selected{% endif %} value="cup">컵</option>
-            <option {% if selected_category == 'etc' %}selected{% endif %} value="etc">기타</option>
+            <option {% if selected_category == 'badge' %}selected{% endif %} value="badge">뱃지</option>
           </select>
         </div>
       </div>
