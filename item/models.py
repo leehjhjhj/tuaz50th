@@ -1,9 +1,14 @@
 from django.db import models
 
 class Item(models.Model):
-    name = models.CharField(max_length=10)
+    CATEGORY_CHOICES = (
+        ('clothes', '의류'),
+        ('cup', '컵'),
+        ('badge', '뱃지'),
+    )
+    name = models.CharField(max_length=32)
     price = models.CharField(max_length=50, null=True)
-    category = models.CharField(max_length=50)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     body = models.TextField(null = True)
     thumbnail = models.ImageField(upload_to='item_thumbnails/', null=True)
 
