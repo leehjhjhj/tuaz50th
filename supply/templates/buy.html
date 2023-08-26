@@ -66,6 +66,7 @@
                                                 <option value="s">S</option>
                                                 <option value="m">M</option>
                                                 <option value="l">L</option>
+                                                <option value="xl">XL</option>
                                             </select>
                                             
                                             <div class="quantity-control">
@@ -215,7 +216,8 @@
     productSizeSelect.innerHTML =
         '<option value="s">S</option>' +
         '<option value="m">M</option>' +
-        '<option value="l">L</option>';
+        '<option value="l">L</option>' +
+        '<option value="xl">XL</option>';
 
     var removeBtn = document.createElement('span');
     removeBtn.className = 'remove-product';
@@ -251,7 +253,7 @@ function checkCategory(select) {
     var category = selectedOption.getAttribute('data-category');
     var productSizeSelect = select.parentNode.querySelector('select[name="size-category[]"]');
 
-    if (category === 'cloth') {
+    if (category === 'clothes') {
         productSizeSelect.style.display = 'block';
     } else {
         productSizeSelect.style.display = 'none';

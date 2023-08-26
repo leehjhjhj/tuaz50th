@@ -8,8 +8,8 @@ def buy(request):
     context = {
         'all_item': all_item,
     }
-    #return render(request, 'buy.html', context)
-    return render(request, 'notyet.html')
+    return render(request, 'buy.html', context)
+    #return render(request, 'notyet.html')
 
 def create(request):
     if request.method == 'POST':  
@@ -40,7 +40,7 @@ def create(request):
             new_order_item = OrderItems()
             new_order_item.order = new_order
             new_order_item.item = Item.objects.get(name=product_name)
-            if not new_order_item.item.category == 'cloth':
+            if not new_order_item.item.category == 'clothes':
                 new_order_item.size = '없음'
             else:
                 new_order_item.size = size
