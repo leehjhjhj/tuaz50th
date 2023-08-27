@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block content %}
     <!-- Product section-->
     <section class="py-5">
@@ -14,7 +14,7 @@
                         <div class="info-in-container">
                             <h1 class="display-5 fw-bolder">{{ item_detail.name }}</h1>
                             <div class="fs-5 mb-5">
-                                <span class="text-decoration-line-through">{{ item_detail.price }}원</span>
+                                <span class="text-decoration-line-through">{{ item_detail.price|intcomma }}원</span>
                             </div>
                         </div>
                         <p class="lead" style="font-size: 18px;">{{ item_detail.body|linebreaks }}</p>

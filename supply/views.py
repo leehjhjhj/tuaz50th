@@ -63,8 +63,8 @@ def order_list(request):
 
 def find_order(request):
     if request.method == 'GET':
-        #return render(request, 'find_order_input.html')
-        return render(request, 'notyet.html')
+        return render(request, 'find_order_input.html')
+        #return render(request, 'notyet.html')
     elif request.method == 'POST':
         phone = request.POST['phone']
         password = request.POST['password']
