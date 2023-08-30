@@ -3,11 +3,14 @@ from .models import *
 
 def all_items(request):
     category = request.GET.get("category")
+    order = ['clothes', 'cup', 'badge']
+
     if not category or category == 'all':
         items = Item.objects.all()
     else:
         items = Item.objects.filter(category=category)
-    
+    items = sorted(list(items), key=lambda item: order.index(item.category))
+
     context = {
         'items': items,
         'selected_category': category,
