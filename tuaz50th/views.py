@@ -13,3 +13,6 @@ def audiotest(request):
 
 def intro(request):
     return render(request, 'intro.html')
+
+def my(request):
+    return render(request, 'my.html')

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <div class="main">
+      <h1><span style="color: #88b468">A</span><span span style="color: #b73999">b</span><span style="color: #dc3c3c">o<span style="color: #00aba5">u</span><span style="color: #93c56e">t </span><span style="color: #a6378e">M</span><span style="color:#d28e5d">e</span><span style="color: #dc3c3c">!</span></h1>
+      <p><span style="color: #00aba5">print</span>(<span style="color: #41f1ae">"My name is LeeHyunJe"</span>)</p>
+      <p><span style=" color: #d28c64">At HUFS, I am learning Turkish Azerbaijani, and software. </span></p>
+      <p><span style="color: #b43896">I ❤ coding, I use: Python, Golang, Java, Django, Fastapi, Spring Boot.</span></p>
+      <img src="https://tuaz.s3.ap-northeast-2.amazonaws.com/static/50th최종-001+(2).png" alt="alternative" style="margin-bottom: 5px; width: 160px; max-width: 100%; height: auto;">
+      <p><span style="color: #00f2ff">"TUAZ50TH site" was created entirely using Python and Django!</span></p>
+      <p><span style="color: #fff700">I made this cute 50th logo, too☺️.</span></p>
+      <p><span style="color: #fb396a">Thank you for your interest and support. Please feel free to email me if you have any complementary points.</span></p>
+      <p class="contact" style="color: #95c76f">/* My email, github and blog to contact me */</p>
+      <a href="mailto:tsukiakarii@naver.com"><p>contact_me()</p></a>
+      <a href="https://github.com/leehjhjhj"><p>github_link()</p></a>
+      <a href="https://imasimdi.tistory.com/"><p>blog_link()</p></a>
+      <p>=============================</p>
+      <p>Thank you.<p class="blinking-cursor">|</p></p>
+    </div>
+  </body>
+
+<style>
+    body {
+  margin-top: 70px;
+  background-color: #292b36;
+}
+
+h1 {
+  border-bottom: 1px solid #d6d6d6;
+  font-family: 'Droid Sans Mono', monospace;
+  font-size: 32px;
+  padding-bottom: 10px;
+}
+
+p {
+  font-family: 'Droid Sans Mono', monospace;
+  font-size: 18px;
+  color: white;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:link {
+  color: white;
+}
+
+a:hover{
+  text-decoration: underline;
+  border-bottom: 1px #fff solid;
+}
+
+.main {
+  max-width: 980px;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.contact {
+  margin-top: 3em;
+}
+
+
+.blinking-cursor {
+  color: white;
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+</style>
+
+{% endblock %}

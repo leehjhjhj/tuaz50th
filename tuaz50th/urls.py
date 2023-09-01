@@ -17,5 +17,6 @@ urlpatterns = [
     path('blockgame/', blockgame, name='blockgame'),
     path('audiotest/', audiotest, name='audiotest'),
     path('intro/', intro, name='intro'),
+    path('leehjhjhj/', my, name='my'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
