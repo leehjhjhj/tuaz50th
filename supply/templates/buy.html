@@ -13,27 +13,32 @@
                     <div class="form-container" style="max-width: 80rem;">
                         <form method="POST" action="{% url 'supply:create' %}" id="order-form">
                             {%csrf_token%}
-                            <br>
+                            주문하시는 상품은 11월 10일 금요일 터키-아제르바이잔어과 50TH 홈커밍데이에서 <ins><b>대면 수령</b></ins>만 가능합니다.<br>
+                            배송 불가한 점 양해 부탁드리며,
+                            주문 이후 불가피하게 행사 참석이 어려울 경우 터키-아제르바이잔어과 학생회에 문의 부탁드립니다.<br>
+
+                            문의사항 : <ins><b>010-5041-9890</ins></b>(터키아제르바이잔어과 제 36대 학생회장 송준엽)<br><br>
+
                             <div class="form-group">
-                                1. 이름를 작성해주세요. 🚨 예금주와 동일해야 합니다!
+                                <b>1. 이름를 작성해주세요.</b> (<ins><b>입금자명과 동일해야 합니다!</b></ins>)
                                 <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="name" style="width: 200px;" required>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
                             <div class="form-group">
-                                2. 주문조회에 사용될 핸드폰 번호를 작성해주세요. ('-' 없이 8자리)
+                                <b>2. 주문조회와 추후 연락을 위한 휴대폰 번호를 작성해주세요.</b> ('-'없이 8자리)
                                 <input class="form-control" type="text" placeholder="010xxxxxxxx" aria-label=".form-control-lg example" name="phone" required maxlength="11">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
                             <div class="form-group">
-                                3. 주문조회에 사용될 패스워드 4자리를 입력해주세요. (example: 0000)<br> 🚨 주의! 첫 주문이 아니시라면 되도록 전과 같은 비밀번호로 설정하세요! 주문 조회에 차질이 있을 수 있습니다. 🚨
+                                <b>3. 주문조회에 사용될 패스워드 4자리를 입력해주세요 (example: 1973)</b> <br> 주의! 첫 주문이 아니시라면 되도록 전과 <ins>같은 비밀번호로 설정하세요!</ins> 주문 조회에 차질이 있을 수 있습니다.
                                 <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="password" style="width:250px;" required maxlength="4" minlength="4">
                                 <div class="help-block with-errors"></div>
                             </div>
                             <br>
                             <div class="form-group">
-                                4. 이메일을 적어주세요.
+                                <b>4. 이메일을 적어주세요.</b> (휴대폰 연락이 불가할시 연락드립니다)
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="example" name="email_id" required>
                                     <span class="input-group-text">@</span>
@@ -44,7 +49,7 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                5. 학번을 입력해주세요. (example: 18)
+                                <b>5. 학번을 입력해주세요.</b> (example: 18)
                                 <input class="form-control" type="text" placeholder="" aria-label=".form-control-lg example" name="grade" style="width:180px;" required maxlength="2">
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -88,7 +93,7 @@
                                 총 가격: <span id="total-price">0</span>원
                                 </h3>
                                 <input type="hidden" name="total-price-input" id="total-price-input">
-                                주문은 계좌이체로 이루어지며, 최종 수량을 잘 확인 한 후 주문하기 버튼을 눌러주세요.
+                                주문은 <ins><b>계좌이체로 진행됩니다.</b></ins> 주문하기를 누르시면 계좌 이체에 관한 상세 페이지가 나옵니다.
                             </div>
                             <br>
                             <button type="submit" name="draft" class="form-control-submit-button" id="submit-btn">주문하기</button>
