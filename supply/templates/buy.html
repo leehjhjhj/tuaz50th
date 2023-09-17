@@ -7,12 +7,13 @@
         <div class="container">
             <div class="row" style="padding-bottom: 20px;">
                 <div class="col-lg-12">
-                    <h1>주문서 작성</h1>
-                    <p>꼼꼼히 읽고 작성해주세요!</p> 
+                    <h1 style="color: black;">주문서 작성</h1>
+                    <p style="color: black;">꼼꼼히 읽고 작성해주세요!</p> 
                     <!-- apply Form -->
                     <div class="form-container" style="max-width: 80rem;">
                         <form method="POST" action="{% url 'supply:create' %}" id="order-form">
                             {%csrf_token%}
+                            <span class="large-text"><ins><b>프리오더 기간: 23.09.18 ~ 23.09.27<br> 프리오더로 제작되어 해당 기간 이후 주문은 어렵습니다! </b></ins></span> <br><br>
                             주문하시는 상품은 11월 10일 금요일 터키-아제르바이잔어과 50TH 홈커밍데이에서 <ins><b>대면 수령</b></ins>만 가능합니다.<br>
                             배송 불가한 점 양해 부탁드리며,
                             주문 이후 불가피하게 행사 참석이 어려울 경우 터키-아제르바이잔어과 학생회에 문의 부탁드립니다.<br>
@@ -377,7 +378,10 @@ function checkCategory(select) {
         .add-btn:hover {
             background-color: #a8e8fd;
         }
-        
+        .large-text {
+        font-size: 1.5em;
+        color: black;
+        }
 
 </style>
 
