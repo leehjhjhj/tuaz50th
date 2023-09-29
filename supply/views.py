@@ -8,8 +8,8 @@ def buy(request):
     context = {
         'all_item': all_item,
     }
-    return render(request, 'buy.html', context)
-    #return render(request, 'notyet.html')
+    #return render(request, 'buy.html', context)
+    return render(request, 'notyet.html')
 
 def create(request):
     if request.method == 'POST':  
